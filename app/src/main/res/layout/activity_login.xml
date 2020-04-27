@@ -41,7 +41,7 @@
             android:id="@+id/textView4"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:layout_marginTop="70dp"
             android:text="@string/sign_in"
             android:textSize="24sp"
@@ -51,7 +51,7 @@
             android:id="@+id/textView2"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:layout_marginTop="30dp"
             android:text="@string/email" />
 
@@ -59,7 +59,7 @@
             android:id="@+id/editText"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
@@ -74,7 +74,7 @@
             android:id="@+id/editText2"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:ems="10"
             android:inputType="textPassword" />
 
@@ -82,7 +82,7 @@
             android:id="@+id/button"
             android:layout_width="293dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:layout_marginTop="20dp"
             android:background="#d92987"
             android:text="@string/confirm" />

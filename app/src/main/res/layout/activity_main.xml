@@ -13,31 +13,40 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_weight="0">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Home"/>
+        <Button
+            android:id="@+id/btnNew"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="New Workout"/>
+        <Button
+            android:id="@+id/btnProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Profile"/>
+        <Button
+            android:id="@+id/btnEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="null"/>
 
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
+    </LinearLayout>
 
-        </LinearLayout>
 
-    </androidx.appcompat.widget.Toolbar>
+
 
 </LinearLayout>

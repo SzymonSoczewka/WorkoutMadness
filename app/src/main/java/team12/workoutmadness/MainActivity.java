@@ -2,16 +2,62 @@ package team12.workoutmadness;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+import androidx.viewpager.widget.ViewPager;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        setupViewPager(mViewPager);
+
+        Button btnHome = findViewById(R.id.btnHome);
+        Button btnNew = findViewById(R.id.btnNew);
+        Button btnProfile = findViewById(R.id.btnProfile);
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setViewPager(0);
+            }
+        });
+
+        btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setViewPager(1);
+            }
+        });
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setViewPager(2);
+            }
+        });
+    }
+
+    private void setupViewPager(ViewPager viewPager){
+        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new NewWorkoutFragment(), "New Workout");
+        adapter.addFragment(new ProfileFragment(), "Profile");
+        viewPager.setAdapter(adapter);
+    }
+
+    public void setViewPager(int fragmentNumber){
+        mViewPager.setCurrentItem(fragmentNumber);
     }
 
 }

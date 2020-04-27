@@ -1,0 +1,2 @@
+rootProject.name='WorkoutMadness'
+include ':app'

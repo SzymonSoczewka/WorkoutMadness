@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">WorkoutMadness</string>
+    <string name="app_name">Workout Madness</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="confirm">Confirm</string>
+    <string name="fp">Forgot password?</string>
+    <string name="sing_up">Sign Up</string>
 </resources>

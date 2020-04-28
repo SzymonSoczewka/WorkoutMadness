@@ -1,5 +1,6 @@
 package team12.workoutmadness;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.Format;
@@ -25,6 +28,9 @@ public class ProfileFragment extends Fragment {
     private int height, weight, age, bmi;
     private TextView txtPBmi;
     private Button btnPSave;
+    private Button btnSignout;
+
+    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
@@ -35,6 +41,18 @@ public class ProfileFragment extends Fragment {
         weightPicker = (NumberPicker) view.findViewById(R.id.weight_picker);
         agePicker = (NumberPicker) view.findViewById(R.id.age_picker);
         txtPBmi = (TextView) view.findViewById(R.id.txtPBmi);
+        btnSignout = view.findViewById(R.id.btnSignout);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        btnSignout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         height = 172;
         weight = 67;

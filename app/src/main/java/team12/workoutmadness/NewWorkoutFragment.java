@@ -35,7 +35,7 @@ public class NewWorkoutFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(workout_name.getText()!=null) {
+                if(!workout_name.getText().toString().isEmpty()) {
                     Bundle bundle = new Bundle();
                     String workoutName = workout_name.getText().toString();
                     Workout workout = new Workout(workoutName, getSelectedDays());

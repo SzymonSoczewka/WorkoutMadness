@@ -1,4 +1,4 @@
-package team12.workoutmadness.Entity;
+package team12.workoutmadness.models;
 
 public class Set {
     private Double weight;

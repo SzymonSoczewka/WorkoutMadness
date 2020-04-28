@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
-import team12.workoutmadness.Entity.Day;
-import team12.workoutmadness.Entity.Workout;
+import team12.workoutmadness.models.Day;
+import team12.workoutmadness.models.Workout;
 
 public class NewWorkoutFragment extends Fragment {
     private static final String TAG = "NewWorkoutFragment";

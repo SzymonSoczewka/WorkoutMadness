@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import team12.workoutmadness.Entity.Workout;
+import team12.workoutmadness.models.Workout;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";

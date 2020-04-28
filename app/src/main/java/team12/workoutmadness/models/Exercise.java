@@ -1,6 +1,8 @@
-package team12.workoutmadness.Entity;
+package team12.workoutmadness.models;
 
 import java.util.ArrayList;
+
+import team12.workoutmadness.models.Set;
 
 public class Exercise {
     private String name;

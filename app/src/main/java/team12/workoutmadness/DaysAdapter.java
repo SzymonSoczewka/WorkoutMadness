@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
-import team12.workoutmadness.Entity.Day;
+import team12.workoutmadness.models.Day;
 
 class DaysAdapter extends ArrayAdapter<Day> {
 

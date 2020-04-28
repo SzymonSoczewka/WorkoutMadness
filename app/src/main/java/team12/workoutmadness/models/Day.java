@@ -1,6 +1,8 @@
-package team12.workoutmadness.Entity;
+package team12.workoutmadness.models;
 
 import java.util.List;
+
+import team12.workoutmadness.models.Exercise;
 
 public class Day {
     private String name;

@@ -13,8 +13,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_weight="0">
@@ -50,8 +53,20 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorTabs"
             android:text="null" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Additional Button 1"
+            android:backgroundTint="@color/colorTabs"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Additional Button 2"
+            android:backgroundTint="@color/colorTabs"/>
 
     </LinearLayout>
+    </HorizontalScrollView>
+
 
 
 

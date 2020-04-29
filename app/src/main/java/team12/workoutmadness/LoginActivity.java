@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
     private void CreateToasts() {
         tstSuccess = Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT);
         tstFail = Toast.makeText(this, "Wrong password or username", Toast.LENGTH_SHORT);

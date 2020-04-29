@@ -10,16 +10,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import team12.workoutmadness.models.Workout;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     SectionsPagerAdapter adapter;
-    String t;
+    Workout currentWorkout;
 
 
 
@@ -80,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setCurrentItem(fragmentNumber);
     }
 
-    public void test(String test) {
-        t = test;
+    public void setWorkout(Workout workout) {
+        currentWorkout = workout;
         HomeFragment hf = (HomeFragment) adapter.getItem(0);
-        hf.UpdateTitle("Fucker");
+        hf.setWorkout(currentWorkout);
     }
 
 }

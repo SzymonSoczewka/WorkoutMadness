@@ -17,33 +17,36 @@ import team12.workoutmadness.models.Workout;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
+    private Context context;
     private ListView listView;
     private TextView title;
+    private Workout currentWorkout;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
+        this.context = getContext();
         setViews(view);
-        /*Bundle bundle = this.getArguments();
-        if(bundle!=null) {
-            Workout workout = (Workout) bundle.getSerializable("workout");
-            saveWorkout(workout, view.getContext());
-        }*/
+        if(currentWorkout!=null) {
+            loadWorkout(currentWorkout);
+        }
         return view;
     }
 
     private void setViews(View view) {
         listView = view.findViewById(R.id.workout_list_view);
-        title = view.findViewById(R.id.textView5);
+        title = view.findViewById(R.id.workout_title);
     }
 
-    private void saveWorkout(Workout workout, Context context){
-        ArrayAdapter arrayAdapter = new DaysAdapter(context, workout.getDays());
-        arrayAdapter.notifyDataSetChanged();
-        listView.setAdapter(arrayAdapter);
+    private void loadWorkout(Workout workout){
+            ArrayAdapter arrayAdapter = new DaysAdapter(context, workout.getDays());
+            arrayAdapter.notifyDataSetChanged();
+            listView.setAdapter(arrayAdapter);
     }
 
-    public void UpdateTitle(String t) {
-        title.setText(t);
+    public void setWorkout(Workout workout) {
+        this.currentWorkout = workout;
+        loadWorkout(currentWorkout);
     }
 }

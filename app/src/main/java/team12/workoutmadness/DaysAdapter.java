@@ -1,13 +1,15 @@
 package team12.workoutmadness;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -37,11 +39,8 @@ class DaysAdapter extends ArrayAdapter<Day> {
 
         Day day = days.get(position);
         TextView day_name = view.findViewById(R.id.day_name);
-        day_name.setText(MessageFormat.format("{0}{1}{2}", day_name.getText().toString(), position, 1));
-
-
-        ListView daysListView = view.findViewById(R.id.workout_list_view);
-        daysListView.removeAllViews();
+        day_name.setText(day.getName());
+        view.getPaddingBottom();
 
         return view;
     }

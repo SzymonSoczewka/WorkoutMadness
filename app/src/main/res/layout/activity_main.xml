@@ -24,25 +24,32 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Home"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="Home" />
+
         <Button
             android:id="@+id/btnNew"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="New Workout"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="New Workout" />
+
         <Button
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Profile"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="Profile" />
+
         <Button
             android:id="@+id/btnEmpty"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="null"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="null" />
 
     </LinearLayout>
 

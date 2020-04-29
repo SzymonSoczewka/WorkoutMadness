@@ -91,7 +91,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#D92987"
+            android:backgroundTint="@color/colorPrimary"
             android:text="Save" />
 
     </LinearLayout>

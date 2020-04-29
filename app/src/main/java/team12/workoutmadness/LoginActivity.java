@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     Button btnLogin;
+    Button btnSignup;
 
     Toast tstSuccess;
     Toast tstFail;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.editEmail);
         password = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnSignup = findViewById(R.id.btnSignup);
 
         CreateToasts();
 
@@ -54,6 +56,14 @@ public class LoginActivity extends AppCompatActivity {
                     TryLogin(e, p);
                 else
                     tstEmpty.show();
+            }
+        });
+
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -78,7 +88,9 @@ public class LoginActivity extends AppCompatActivity {
         tstSuccess.show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
+
     private void CreateToasts() {
         tstSuccess = Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT);
         tstFail = Toast.makeText(this, "Wrong password or username", Toast.LENGTH_SHORT);

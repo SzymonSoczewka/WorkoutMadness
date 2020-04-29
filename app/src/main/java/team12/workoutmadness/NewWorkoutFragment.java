@@ -36,13 +36,14 @@ public class NewWorkoutFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!workout_name.getText().toString().isEmpty()) {
-                    Bundle bundle = new Bundle();
+                    /*Bundle bundle = new Bundle();
                     String workoutName = workout_name.getText().toString();
                     Workout workout = new Workout(workoutName, getSelectedDays());
                     bundle.putSerializable("workout", workout);
                     HomeFragment homeFragment = new HomeFragment();
                     homeFragment.setArguments(bundle);
-                    getFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
+                    getFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();*/
+                    ((MainActivity) getActivity()).test(workout_name.getText().toString());
                     ((MainActivity)getActivity()).setViewPager(0);
                 }
             }

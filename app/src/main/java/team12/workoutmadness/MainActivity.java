@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
+    SectionsPagerAdapter adapter;
+    String t;
 
 
 
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager){
-        SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new HomeFragment(), "Home");
         adapter.addFragment(new NewWorkoutFragment(), "New Workout");
         adapter.addFragment(new ProfileFragment(), "Profile");
@@ -76,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViewPager(int fragmentNumber){
         mViewPager.setCurrentItem(fragmentNumber);
+    }
+
+    public void test(String test) {
+        t = test;
+        HomeFragment hf = (HomeFragment) adapter.getItem(0);
+        hf.UpdateTitle("Fucker");
     }
 
 }

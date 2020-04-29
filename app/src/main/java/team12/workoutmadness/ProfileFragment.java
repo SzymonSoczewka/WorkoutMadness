@@ -23,7 +23,7 @@ import java.text.Format;
 import java.text.ParsePosition;
 
 public class ProfileFragment extends Fragment {
-    private static final String TAG = "ProfileFragment";
+    private static final String TAG = "PROFILE_FRAGMENT";
     private NumberPicker heightPicker, weightPicker, agePicker;
     private int height, weight, age, bmi;
     private TextView txtPBmi;

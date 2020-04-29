@@ -2,7 +2,6 @@ package team12.workoutmadness;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Workout;
 
 public class NewWorkoutFragment extends Fragment {
-    private static final String TAG = "NewWorkoutFragment";
+    private static final String TAG = "NEW_WORKOUT_FRAGMENT";
     private Button btnSave;
     private EditText workout_name;
     private CheckBox mon,tue,wed,thur,fri,sat,sun;
@@ -32,7 +31,6 @@ public class NewWorkoutFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.new_workout, container, false);
         setViews(view);
-
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +46,7 @@ public class NewWorkoutFragment extends Fragment {
             workout_name.getText().clear();
             Workout workout = new Workout(workoutName, getSelectedDays());
             ((MainActivity) Objects.requireNonNull(getActivity())).setWorkout(workout);
-            ((MainActivity)getActivity()).setViewPager(0);
+            ((MainActivity)getActivity()).setView_pager(MainActivity.HOME_FRAGMENT_INDEX);
         } else {
             Toast.makeText(context,"Name your workout and select days",Toast.LENGTH_SHORT).show();
         }

@@ -20,7 +20,7 @@ public class Exercise {
     public void setName(String name) {
         this.name = name;
     }
-    // Map<Weight,Reps>
+
     public ArrayList<Set> getSets() {
         return sets;
     }

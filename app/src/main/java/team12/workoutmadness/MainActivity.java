@@ -13,16 +13,19 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Workout;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    private ViewPager mViewPager;
+    static final int HOME_FRAGMENT_INDEX = 0;
+    static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
+    static final int PROFILE_FRAGMENT_INDEX = 2;
+    static final int DAY_FRAGMENT_INDEX = 3;
+    private ViewPager view_pager;
     SectionsPagerAdapter adapter;
-    Workout currentWorkout;
-
-
+    Workout current_workout;
+    Day current_day;
 
 
     @Override
@@ -32,16 +35,18 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+
         if(user == null){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
 
+
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().add(R.id.container,new NewWorkoutFragment()).commit();
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        view_pager = (ViewPager) findViewById(R.id.container);
+        setupViewPager(view_pager);
 
         Button btnHome = findViewById(R.id.btnHome);
         Button btnNew = findViewById(R.id.btnNew);
@@ -50,21 +55,21 @@ public class MainActivity extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setViewPager(0);
+                setView_pager(HOME_FRAGMENT_INDEX);
             }
         });
 
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setViewPager(1);
+                setView_pager(NEW_WORKOUT_FRAGMENT_INDEX);
             }
         });
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setViewPager(2);
+                setView_pager(PROFILE_FRAGMENT_INDEX);
             }
         });
 
@@ -75,17 +80,22 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new HomeFragment(), "Home");
         adapter.addFragment(new NewWorkoutFragment(), "New Workout");
         adapter.addFragment(new ProfileFragment(), "Profile");
+        adapter.addFragment(new DayFragment(),"Day");
         viewPager.setAdapter(adapter);
     }
 
-    public void setViewPager(int fragmentNumber){
-        mViewPager.setCurrentItem(fragmentNumber);
+    public void setView_pager(int fragment_index){
+        view_pager.setCurrentItem(fragment_index);
     }
 
     public void setWorkout(Workout workout) {
-        currentWorkout = workout;
-        HomeFragment hf = (HomeFragment) adapter.getItem(0);
-        hf.setWorkout(currentWorkout);
+        current_workout = workout;
+        HomeFragment hf = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
+        hf.setWorkout(current_workout);
     }
-
+    public void setDay(Day day) {
+        current_day = day;
+        DayFragment df = (DayFragment) adapter.getItem(DAY_FRAGMENT_INDEX);
+        df.setDay(current_day);
+    }
 }

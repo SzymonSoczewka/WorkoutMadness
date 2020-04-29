@@ -1,19 +1,15 @@
 package team12.workoutmadness;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import java.util.Random;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 
 import team12.workoutmadness.models.Day;
@@ -34,7 +30,7 @@ class DaysAdapter extends ArrayAdapter<Day> {
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.single_day,null);
+            view = inflater.inflate(R.layout.list_view_element,null);
         }
 
         Day day = days.get(position);

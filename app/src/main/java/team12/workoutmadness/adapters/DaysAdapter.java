@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,14 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import team12.workoutmadness.R;
 import team12.workoutmadness.models.Day;
 
-class DaysAdapter extends ArrayAdapter<Day> {
+public class DaysAdapter extends ArrayAdapter<Day> {
 
     private ArrayList<Day> days;
 
-    DaysAdapter(@NonNull Context context, @NonNull ArrayList<Day> days) {
+    public DaysAdapter(@NonNull Context context, @NonNull ArrayList<Day> days) {
         super(context, 0, days);
         this.days = days;
     }

@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

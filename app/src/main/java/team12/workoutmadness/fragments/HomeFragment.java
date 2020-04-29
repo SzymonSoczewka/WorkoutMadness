@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Objects;
 
+import team12.workoutmadness.adapters.DaysAdapter;
+import team12.workoutmadness.views.MainActivity;
+import team12.workoutmadness.R;
 import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Workout;
 

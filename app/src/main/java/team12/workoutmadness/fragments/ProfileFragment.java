@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,9 +18,9 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DecimalFormat;
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.ParsePosition;
+
+import team12.workoutmadness.views.LoginActivity;
+import team12.workoutmadness.R;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "PROFILE_FRAGMENT";

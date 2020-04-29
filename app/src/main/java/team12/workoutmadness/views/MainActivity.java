@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.views;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +13,21 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import team12.workoutmadness.R;
+import team12.workoutmadness.adapters.SectionsPagerAdapter;
+import team12.workoutmadness.fragments.DayFragment;
+import team12.workoutmadness.fragments.HomeFragment;
+import team12.workoutmadness.fragments.NewWorkoutFragment;
+import team12.workoutmadness.fragments.ProfileFragment;
 import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Workout;
 
 
 public class MainActivity extends AppCompatActivity {
-    static final int HOME_FRAGMENT_INDEX = 0;
-    static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
-    static final int PROFILE_FRAGMENT_INDEX = 2;
-    static final int DAY_FRAGMENT_INDEX = 3;
+    public static final int HOME_FRAGMENT_INDEX = 0;
+    public static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
+    public static final int PROFILE_FRAGMENT_INDEX = 2;
+    public static final int DAY_FRAGMENT_INDEX = 3;
     private ViewPager view_pager;
     SectionsPagerAdapter adapter;
     Workout current_workout;

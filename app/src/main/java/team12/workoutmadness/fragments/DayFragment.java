@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import team12.workoutmadness.R;
 import team12.workoutmadness.models.Day;
 
 public class DayFragment extends Fragment {
@@ -27,7 +28,7 @@ public class DayFragment extends Fragment {
         day_name = view.findViewById(R.id.day_name);
     }
 
-    void setDay(Day currentDay) {
+    public void setDay(Day currentDay) {
     this.current_day = currentDay;
     }
     private void loadDay(){

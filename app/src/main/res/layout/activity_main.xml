@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".views.MainActivity"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
@@ -13,8 +13,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_weight="0">
@@ -24,27 +27,46 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Home"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="Home" />
+
         <Button
             android:id="@+id/btnNew"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="New Workout"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="New Workout" />
+
         <Button
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Profile"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="Profile" />
+
         <Button
             android:id="@+id/btnEmpty"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="null"/>
+            android:backgroundTint="@color/colorTabs"
+            android:text="null" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Additional Button 1"
+            android:backgroundTint="@color/colorTabs"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Additional Button 2"
+            android:backgroundTint="@color/colorTabs"/>
 
     </LinearLayout>
+    </HorizontalScrollView>
+
 
 
 

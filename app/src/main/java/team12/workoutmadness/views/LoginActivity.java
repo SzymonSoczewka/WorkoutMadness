@@ -1,4 +1,4 @@
-package team12.workoutmadness;
+package team12.workoutmadness.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,16 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import team12.workoutmadness.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "LOGIN_ACTIVITY";
 
     private FirebaseAuth mAuth;
 
     EditText email;
     EditText password;
     Button btnLogin;
+    Button btnSignup;
 
     Toast tstSuccess;
     Toast tstFail;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.editEmail);
         password = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnSignup = findViewById(R.id.btnSignup);
 
         CreateToasts();
 
@@ -54,6 +56,14 @@ public class LoginActivity extends AppCompatActivity {
                     TryLogin(e, p);
                 else
                     tstEmpty.show();
+            }
+        });
+
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateAccountActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -78,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         tstSuccess.show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void CreateToasts() {

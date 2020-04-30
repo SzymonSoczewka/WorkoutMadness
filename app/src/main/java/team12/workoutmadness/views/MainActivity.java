@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
     public static final int PROFILE_FRAGMENT_INDEX = 2;
     public static final int DAY_FRAGMENT_INDEX = 3;
+    private Button btnHome, btnNew, btnProfile;
     private ViewPager view_pager;
     SectionsPagerAdapter adapter;
     Workout current_workout;
@@ -51,12 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().add(R.id.container,new NewWorkoutFragment()).commit();
-        view_pager = (ViewPager) findViewById(R.id.container);
+        setViews();
         setupViewPager(view_pager);
 
-        Button btnHome = findViewById(R.id.btnHome);
-        Button btnNew = findViewById(R.id.btnNew);
-        Button btnProfile = findViewById(R.id.btnProfile);
+
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,12 +80,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setViews() {
+        view_pager = findViewById(R.id.container);
+        btnHome = findViewById(R.id.btnHome);
+        btnNew = findViewById(R.id.btnNew);
+        btnProfile = findViewById(R.id.btnProfile);
+    }
+
     private void setupViewPager(ViewPager viewPager){
         adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new HomeFragment(), "Home");
-        adapter.addFragment(new NewWorkoutFragment(), "New Workout");
-        adapter.addFragment(new ProfileFragment(), "Profile");
-        adapter.addFragment(new DayFragment(),"Day");
+        adapter.addFragment(new HomeFragment(), "HOME");
+        adapter.addFragment(new NewWorkoutFragment(), "NEW_WORKOUT");
+        adapter.addFragment(new ProfileFragment(), "PROFILE");
+        adapter.addFragment(new DayFragment(),"DAY");
         viewPager.setAdapter(adapter);
     }
 

@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="47dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorLoginView"
             android:text="@string/confirm" />
 
         <LinearLayout
@@ -109,7 +109,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/sing_up" />
+                android:text="@string/sing_up"
+                android:textColorLink="@color/colorLoginView" />
         </LinearLayout>
 
     </LinearLayout>

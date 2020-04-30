@@ -27,42 +27,66 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorTabs"
+            android:background="@color/colorTabs"
             android:text="Home" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorDivider" />
 
         <Button
             android:id="@+id/btnNew"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorTabs"
+            android:background="@color/colorTabs"
             android:text="New Workout" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorDivider" />
 
         <Button
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorTabs"
+            android:background="@color/colorTabs"
             android:text="Profile" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorDivider" />
 
         <Button
             android:id="@+id/btnEmpty"
-            android:layout_width="wrap_content"
+            android:layout_width="112dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorTabs"
+            android:background="@color/colorTabs"
             android:text="null" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorDivider" />
+
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Additional Button 1"
-            android:backgroundTint="@color/colorTabs"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Additional Button 2"
-            android:backgroundTint="@color/colorTabs"/>
+            android:layout_height="50dp"
+            android:background="@color/colorTabs"
+            android:text="Additional Button 1" />
 
     </LinearLayout>
     </HorizontalScrollView>

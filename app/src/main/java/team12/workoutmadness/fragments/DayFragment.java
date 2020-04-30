@@ -14,6 +14,7 @@ import team12.workoutmadness.R;
 import team12.workoutmadness.models.Day;
 
 public class DayFragment extends Fragment {
+    private static final String TAG = "DAY_FRAGMENT";
     private TextView day_name;
     private Day current_day;
     @Nullable

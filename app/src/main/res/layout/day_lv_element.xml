@@ -11,8 +11,7 @@
         android:layout_height="103dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:backgroundTint="#6ADC5959"
-        app:cardCornerRadius="@dimen/cardview_default_radius"
+        android:backgroundTint="@color/cardColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

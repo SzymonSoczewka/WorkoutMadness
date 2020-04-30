@@ -25,9 +25,9 @@ import team12.workoutmadness.models.Workout;
 public class HomeFragment extends Fragment {
     private static final String TAG = "HOME_FRAGMENT";
     private Context context;
-    private ListView list_view;
-    private TextView title, welcome_label;
-    private Workout current_workout;
+    private ListView daysListView;
+    private TextView title, welcomeLabel;
+    private Workout currentWorkout;
 
     @Nullable
     @Override
@@ -35,38 +35,38 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home, container, false);
         this.context = getContext();
         setViews(view);
-        if(current_workout !=null) {
-            loadWorkout(current_workout);
+        if(currentWorkout !=null) {
+            loadWorkout(currentWorkout);
         }
         return view;
     }
 
     private void setViews(View view) {
-        list_view = view.findViewById(R.id.workout_list_view);
+        daysListView = view.findViewById(R.id.workout_list_view);
         title = view.findViewById(R.id.workout_title);
-        welcome_label = view.findViewById(R.id.welcome_label);
+        welcomeLabel = view.findViewById(R.id.welcome_label);
     }
 
     public void setWorkout(Workout workout) {
-        this.current_workout = workout;
-        loadWorkout(current_workout);
+        this.currentWorkout = workout;
+        loadWorkout(currentWorkout);
     }
 
     private void loadWorkout(Workout workout){
             ArrayAdapter arrayAdapter = new DaysAdapter(context, workout.getDays());
             arrayAdapter.notifyDataSetChanged();
-            list_view.setAdapter(arrayAdapter);
+            daysListView.setAdapter(arrayAdapter);
             title.setText(workout.getName());
             setListViewListener();
     }
 
     private void setListViewListener(){
-        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        daysListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Day day = current_workout.getDays().get(position);
+                Day day = currentWorkout.getDays().get(position);
                 ((MainActivity) Objects.requireNonNull(getActivity())).setDay(day);
-                ((MainActivity)getActivity()).setView_pager(MainActivity.DAY_FRAGMENT_INDEX);
+                ((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
             }
         });
     }

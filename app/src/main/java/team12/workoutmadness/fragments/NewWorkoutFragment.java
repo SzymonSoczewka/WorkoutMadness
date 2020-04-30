@@ -25,7 +25,7 @@ import team12.workoutmadness.models.Workout;
 public class NewWorkoutFragment extends Fragment {
     private static final String TAG = "NEW_WORKOUT_FRAGMENT";
     private Button btnSave;
-    private EditText workout_name;
+    private EditText workoutName;
     private CheckBox mon,tue,wed,thur,fri,sat,sun;
 
     @Nullable
@@ -43,12 +43,12 @@ public class NewWorkoutFragment extends Fragment {
         return view;
     }
     private void createWorkout(Context context) {
-        if(!workout_name.getText().toString().isEmpty()) {
-            String workoutName = workout_name.getText().toString();
-            workout_name.getText().clear();
+        if(!workoutName.getText().toString().isEmpty()) {
+            String workoutName = this.workoutName.getText().toString();
+            this.workoutName.getText().clear();
             Workout workout = new Workout(workoutName, getSelectedDays());
             ((MainActivity) Objects.requireNonNull(getActivity())).setWorkout(workout);
-            ((MainActivity)getActivity()).setView_pager(MainActivity.HOME_FRAGMENT_INDEX);
+            ((MainActivity)getActivity()).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
         } else {
             Toast.makeText(context,"Name your workout and select days",Toast.LENGTH_SHORT).show();
         }
@@ -57,7 +57,7 @@ public class NewWorkoutFragment extends Fragment {
         //Button
         btnSave = view.findViewById(R.id.btnSave);
         //EditText
-        workout_name = view.findViewById(R.id.workout_name);
+        workoutName = view.findViewById(R.id.workout_name);
         //CheckBox
         mon= view.findViewById(R.id.monday_box);
         tue= view.findViewById(R.id.tuesday_box);

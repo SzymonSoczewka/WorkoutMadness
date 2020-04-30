@@ -11,84 +11,85 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_weight="0">
 
-        <Button
-            android:id="@+id/btnHome"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/colorTabs"
-            android:text="Home" />
+            android:layout_weight="0"
+            android:orientation="horizontal">
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorDivider" />
+            <Button
+                android:id="@+id/btnHome"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorTabs"
+                android:text="Home" />
 
-        <Button
-            android:id="@+id/btnNew"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/colorTabs"
-            android:text="New Workout" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorDivider" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorDivider" />
+            <Button
+                android:id="@+id/btnNew"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorTabs"
+                android:text="New Workout" />
 
-        <Button
-            android:id="@+id/btnProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/colorTabs"
-            android:text="Profile" />
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorDivider" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorDivider" />
+            <Button
+                android:id="@+id/btnProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorTabs"
+                android:text="Profile" />
 
-        <Button
-            android:id="@+id/btnEmpty"
-            android:layout_width="112dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@color/colorTabs"
-            android:text="null" />
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorDivider" />
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorDivider" />
+            <Button
+                android:id="@+id/btnEmpty"
+                android:layout_width="112dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/colorTabs"
+                android:text="null" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="@color/colorTabs"
-            android:text="Additional Button 1" />
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorDivider" />
 
-    </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@color/colorTabs"
+                android:text="Additional Button 1" />
+
+        </LinearLayout>
     </HorizontalScrollView>
 
 

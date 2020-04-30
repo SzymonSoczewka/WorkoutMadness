@@ -31,13 +31,13 @@ public class DaysAdapter extends ArrayAdapter<Day> {
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_view_element,null);
+            view = inflater.inflate(R.layout.day_lv_element,null);
         }
 
         Day day = days.get(position);
         TextView day_name = view.findViewById(R.id.day_name);
         day_name.setText(day.getName());
-        view.getPaddingBottom();
+
 
         return view;
     }

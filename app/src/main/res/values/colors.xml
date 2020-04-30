@@ -3,6 +3,7 @@
     <color name="colorLoginView">#DC2367</color>
     <color name="primaryColor">#DA627D</color>
     <color name="colorTabs">#DA627D</color>
+    <color name="cardColor">#6ADC5959</color>
 
     <color name="colorDivider">#FF000000</color>
     <color name="colorAccent">#bd3967</color>

@@ -59,6 +59,7 @@ public class DayFragment extends Fragment {
             arrayAdapter = new ExercisesAdapter(view.getContext(), selectedDay.getExercises());
             arrayAdapter.notifyDataSetChanged();
             exercisesListView.setAdapter(arrayAdapter);
+            exercisesListView.setSelection(selectedDay.getExercises().size()-1);
         }
     }
 

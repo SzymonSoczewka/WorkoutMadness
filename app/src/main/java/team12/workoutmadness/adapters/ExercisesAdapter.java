@@ -42,6 +42,8 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
         Exercise exercise = exercises.get(position);
         TextView exercise_name = view.findViewById(R.id.exercise_name);
         LinearLayout exerciseLinearLayout = view.findViewById(R.id.exercise_linear_layout);
+        exerciseLinearLayout.removeAllViews();
+        exerciseLinearLayout.addView(exercise_name);
         CardView exerciseCard = view.findViewById(R.id.exercise_card);
         //Set the name for currently loaded exercise
         exercise_name.setText(exercise.getName());

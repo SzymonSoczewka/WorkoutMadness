@@ -47,13 +47,6 @@
                         android:layout_marginStart="50dp"
                         android:text="6 exercise(s)" />
 
-                    <TextView
-                        android:id="@+id/day_duration"
-                        android:layout_width="1dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:layout_weight="1"
-                        android:text="Last duration: 56:30" />
                 </LinearLayout>
 
             </LinearLayout>

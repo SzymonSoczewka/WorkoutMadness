@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -90,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
         btnProfile = findViewById(R.id.btnProfile);
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    @SuppressLint("ClickableViewAccessibility")
+    private void setupViewPager(final ViewPager viewPager){
         adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new HomeFragment(), "HOME");
         adapter.addFragment(new NewWorkoutFragment(), "NEW_WORKOUT");

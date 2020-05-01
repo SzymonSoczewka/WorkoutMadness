@@ -47,6 +47,7 @@ public class DayFragment extends Fragment {
                 selectedDay.addExercise(e);
                 ((MainActivity) Objects.requireNonNull(getActivity())).updateSelectedDay(selectedDay);
                 setAdapter(view);
+                ((MainActivity)getActivity()).setViewPager(MainActivity.EXERCISE_FRAGMENT_INDEX);
             }
         });
         setAdapter(view);

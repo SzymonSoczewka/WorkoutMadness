@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Day day = currentWorkout.getDays().get(position);
-                ((MainActivity) Objects.requireNonNull(getActivity())).setDay(day);
+                ((MainActivity) Objects.requireNonNull(getActivity())).setSelectedDay(day);
                 ((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
             }
         });

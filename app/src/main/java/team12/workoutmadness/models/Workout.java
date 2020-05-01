@@ -26,4 +26,13 @@ public class Workout implements Serializable {
     public void setDays(ArrayList<Day> days) {
         this.days = days;
     }
+
+    public void updateDay(Day updatedDay){
+        for (Day day: days) {
+            if(day.getName().equals(updatedDay.getName())) {
+                day = updatedDay;
+                break;
+            }
+        }
+    }
 }

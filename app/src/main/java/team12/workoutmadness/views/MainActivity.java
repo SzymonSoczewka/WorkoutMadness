@@ -20,6 +20,7 @@ import team12.workoutmadness.fragments.HomeFragment;
 import team12.workoutmadness.fragments.NewWorkoutFragment;
 import team12.workoutmadness.fragments.ProfileFragment;
 import team12.workoutmadness.models.Day;
+import team12.workoutmadness.models.Exercise;
 import team12.workoutmadness.models.Workout;
 
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     SectionsPagerAdapter adapter;
     Workout currentWorkout;
-    Day currentDay;
+    Day selectedDay;
 
 
     @Override
@@ -100,14 +101,23 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(fragment_index);
     }
 
-    public void setWorkout(Workout workout) {
+    public void setCurrentWorkout(Workout workout) {
         currentWorkout = workout;
         HomeFragment hf = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
         hf.setWorkout(currentWorkout);
     }
-    public void setDay(Day day) {
-        currentDay = day;
+
+    public void setSelectedDay(Day day) {
+        selectedDay = day;
         DayFragment df = (DayFragment) adapter.getItem(DAY_FRAGMENT_INDEX);
-        df.setDay(currentDay);
+        df.setSelectedDay(selectedDay);
     }
+    public void updateSelectedDay(Day day) {
+        selectedDay = day;
+        currentWorkout.updateDay(selectedDay);
+    }
+    public Day getSelectedDay(){
+        return selectedDay;
+    }
+
 }

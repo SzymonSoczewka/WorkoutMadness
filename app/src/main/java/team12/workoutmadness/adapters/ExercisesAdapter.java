@@ -1,6 +1,7 @@
 package team12.workoutmadness.adapters;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
@@ -40,29 +42,30 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
         Exercise exercise = exercises.get(position);
         TextView exercise_name = view.findViewById(R.id.exercise_name);
         LinearLayout exerciseLinearLayout = view.findViewById(R.id.exercise_linear_layout);
+        CardView exerciseCard = view.findViewById(R.id.exercise_card);
         //Set the name for currently loaded exercise
         exercise_name.setText(exercise.getName());
         int exercisesCount = exercise.getSets().size();
 
-        //Load all sets with reps and weight details
+        //For each exercise, load all sets with reps and weight details
         for(int i=0; i<exercisesCount; i++){
             TextView row = new TextView(view.getContext());
             Set currentSet = exercise.getSets().get(i);
             String exerciseDetails = setDetails(i+1,currentSet);
             row.setTextSize(30);
+            row.setGravity(Gravity.CENTER);
             row.setText(exerciseDetails);
             exerciseLinearLayout.addView(row);
         }
-
         return view;
     }
     //This method return set information depending on its content
     private String setDetails(int setNumber,Set set){
-        String s = setNumber+": "+set.getReps();
+        String s = setNumber+"s: "+set.getReps();
         if(set.getWeight() == null) {
         return s;
         } else
-            return s+" x "+set.getWeight();
+            return s+" x "+set.getWeight()+"kg";
     }
 }
 

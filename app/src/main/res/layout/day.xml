@@ -23,8 +23,8 @@
 
             <TextView
                 android:id="@+id/day_name"
-                android:layout_width="262dp"
-                android:layout_height="51dp"
+                android:layout_width="237dp"
+                android:layout_height="match_parent"
                 android:gravity="center|end"
                 android:text="Monday"
                 android:textSize="30sp" />

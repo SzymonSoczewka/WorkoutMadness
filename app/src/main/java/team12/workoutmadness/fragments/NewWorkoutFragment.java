@@ -47,7 +47,7 @@ public class NewWorkoutFragment extends Fragment {
             String workoutName = this.workoutName.getText().toString();
             this.workoutName.getText().clear();
             Workout workout = new Workout(workoutName, getSelectedDays());
-            ((MainActivity) Objects.requireNonNull(getActivity())).setWorkout(workout);
+            ((MainActivity) Objects.requireNonNull(getActivity())).setCurrentWorkout(workout);
             ((MainActivity)getActivity()).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
         } else {
             Toast.makeText(context,"Name your workout and select days",Toast.LENGTH_SHORT).show();

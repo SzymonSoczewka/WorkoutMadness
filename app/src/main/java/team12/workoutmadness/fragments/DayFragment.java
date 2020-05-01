@@ -14,20 +14,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import team12.workoutmadness.R;
 import team12.workoutmadness.adapters.ExercisesAdapter;
 import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Exercise;
 import team12.workoutmadness.models.Set;
+import team12.workoutmadness.views.MainActivity;
 
 public class DayFragment extends Fragment {
     private static final String TAG = "DAY_FRAGMENT";
     private TextView dayName;
-    private Day currentDay;
+    private Day selectedDay;
     private ImageView newExerciseButton;
     private ListView exercisesListView;
-    private ArrayList<Exercise> exerciseList = new ArrayList<>();
+    private ArrayAdapter arrayAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,18 +44,22 @@ public class DayFragment extends Fragment {
                 ArrayList<Set> arrayList = new  ArrayList<>();
                 arrayList.add(s);
                 Exercise e = new Exercise("Dead-lift",arrayList);
-                exerciseList.add(e);
+                selectedDay.addExercise(e);
+                ((MainActivity) Objects.requireNonNull(getActivity())).updateSelectedDay(selectedDay);
                 setAdapter(view);
             }
         });
+        setAdapter(view);
         loadDay();
         return  view;
     }
 
     private void setAdapter(View view) {
-        ArrayAdapter arrayAdapter = new ExercisesAdapter(view.getContext(), exerciseList);
-        arrayAdapter.notifyDataSetChanged();
-        exercisesListView.setAdapter(arrayAdapter);
+        if(selectedDay.getExercises() != null){
+            arrayAdapter = new ExercisesAdapter(view.getContext(), selectedDay.getExercises());
+            arrayAdapter.notifyDataSetChanged();
+            exercisesListView.setAdapter(arrayAdapter);
+        }
     }
 
     private void setViews(View view) {
@@ -61,12 +68,12 @@ public class DayFragment extends Fragment {
         exercisesListView = view.findViewById(R.id.exercises_list_view);
     }
 
-    public void setDay(Day currentDay) {
-    this.currentDay = currentDay;
+    public void setSelectedDay(Day currentDay) {
+        this.selectedDay = currentDay;
     }
     private void loadDay(){
-        if(currentDay !=null){
-            dayName.setText(currentDay.getName());
+        if(!selectedDay.getName().isEmpty()){
+            dayName.setText(selectedDay.getName());
         }
     }
 }

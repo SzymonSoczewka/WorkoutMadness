@@ -6,8 +6,9 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="103dp"
+        android:id="@+id/exercise_card"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:divider="@android:color/transparent"
@@ -21,7 +22,7 @@
             android:id="@+id/exercise_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -31,6 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:text="siema"
                 android:textSize="36sp" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

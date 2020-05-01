@@ -1,12 +1,13 @@
 package team12.workoutmadness.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import team12.workoutmadness.models.Exercise;
 
 public class Day {
     private String name;
-    private List<Exercise> exercises;
+    private ArrayList<Exercise> exercises = new ArrayList<>();
 
     public Day(String name) {
         this.name = name;
@@ -20,11 +21,15 @@ public class Day {
         this.name = name;
     }
 
-    public List<Exercise> getExercises() {
+    public ArrayList<Exercise> getExercises() {
         return exercises;
     }
 
-    public void setExercises(List<Exercise> exercises) {
+    public void setExercises(ArrayList<Exercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public void addExercise(Exercise exercise) {
+        exercises.add(exercise);
     }
 }

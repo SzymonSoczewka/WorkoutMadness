@@ -1,5 +1,6 @@
 package team12.workoutmadness.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
         this.exercises = exercises;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
@@ -41,12 +43,12 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
         //Get current exercise that's being loaded
         Exercise exercise = exercises.get(position);
         TextView exercise_name = view.findViewById(R.id.exercise_name);
+        //Get container where records will be loaded
         LinearLayout exerciseLinearLayout = view.findViewById(R.id.exercise_linear_layout);
         exerciseLinearLayout.removeAllViews();
         exerciseLinearLayout.addView(exercise_name);
-        CardView exerciseCard = view.findViewById(R.id.exercise_card);
         //Set the name for currently loaded exercise
-        exercise_name.setText(exercise.getName());
+        exercise_name.setText((position+1)+"# "+exercise.getName());
         int exercisesCount = exercise.getSets().size();
 
         //For each exercise, load all sets with reps and weight details
@@ -56,16 +58,18 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
             String exerciseDetails = setDetails(i+1,currentSet);
             row.setTextSize(30);
             row.setGravity(Gravity.CENTER);
+            row.setPadding(0,0,0,20);
             row.setText(exerciseDetails);
             exerciseLinearLayout.addView(row);
         }
+        view.setPadding(0,0,0,30);
         return view;
     }
     //This method return set information depending on its content
     private String setDetails(int setNumber,Set set){
         String s = setNumber+"s: "+set.getReps();
         if(set.getWeight() == null) {
-        return s;
+        return s + " reps";
         } else
             return s+" x "+set.getWeight()+"kg";
     }

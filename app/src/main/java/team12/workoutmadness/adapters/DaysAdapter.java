@@ -42,7 +42,7 @@ public class DaysAdapter extends ArrayAdapter<Day> {
         TextView exercisesCount = view.findViewById(R.id.exercises_count);
         exercisesCount.setTextSize(20);
         exercisesCount.setText(day.getExercises().size() + " exercise(s)");
-
+        view.setPadding(0,0,0,30);
         return view;
     }
 }

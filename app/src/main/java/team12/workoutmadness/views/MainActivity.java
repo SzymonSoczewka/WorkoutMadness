@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import team12.workoutmadness.R;
 import team12.workoutmadness.adapters.SectionsPagerAdapter;
 import team12.workoutmadness.fragments.DayFragment;
+import team12.workoutmadness.fragments.ExerciseFragment;
 import team12.workoutmadness.fragments.HomeFragment;
 import team12.workoutmadness.fragments.NewWorkoutFragment;
 import team12.workoutmadness.fragments.ProfileFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
     public static final int PROFILE_FRAGMENT_INDEX = 2;
     public static final int DAY_FRAGMENT_INDEX = 3;
+    public static final int EXERCISE_FRAGMENT_INDEX = 4;
     private Button btnHome, btnNew, btnProfile;
     private ViewPager viewPager;
     SectionsPagerAdapter adapter;
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new NewWorkoutFragment(), "NEW_WORKOUT");
         adapter.addFragment(new ProfileFragment(), "PROFILE");
         adapter.addFragment(new DayFragment(),"DAY");
+        adapter.addFragment(new ExerciseFragment(),"EXERCISE");
         viewPager.setAdapter(adapter);
     }
 

@@ -55,7 +55,7 @@ public class DayFragment extends Fragment {
     }
 
     private void setAdapter(View view) {
-        if(selectedDay.getExercises() != null){
+        if(selectedDay!= null && selectedDay.getExercises() != null){
             arrayAdapter = new ExercisesAdapter(view.getContext(), selectedDay.getExercises());
             arrayAdapter.notifyDataSetChanged();
             exercisesListView.setAdapter(arrayAdapter);
@@ -73,7 +73,7 @@ public class DayFragment extends Fragment {
         this.selectedDay = currentDay;
     }
     private void loadDay(){
-        if(!selectedDay.getName().isEmpty()){
+        if(selectedDay!= null && !selectedDay.getName().isEmpty()){
             dayName.setText(selectedDay.getName());
         }
     }

@@ -56,8 +56,8 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
             TextView row = new TextView(view.getContext());
             Set currentSet = exercise.getSets().get(i);
             String exerciseDetails = setDetails(i+1,currentSet);
-            row.setTextSize(30);
-            row.setGravity(Gravity.CENTER);
+            row.setTextSize(25);
+            row.setGravity(Gravity.START);
             row.setPadding(0,0,0,20);
             row.setText(exerciseDetails);
             exerciseLinearLayout.addView(row);

@@ -121,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
     public void updateSelectedDay(Day day) {
         selectedDay = day;
         currentWorkout.updateDay(selectedDay);
+        DayFragment df = (DayFragment) adapter.getItem(DAY_FRAGMENT_INDEX);
+        df.setAdapter();
     }
     public Day getSelectedDay(){
         return selectedDay;

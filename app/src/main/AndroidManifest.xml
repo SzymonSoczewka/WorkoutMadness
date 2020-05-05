@@ -20,6 +20,12 @@
         <activity android:name=".views.LoginActivity">
 
         </activity>
+        <activity android:name=".views.DayActivity">
+
+        </activity>
+        <activity android:name=".views.ExerciseActivity">
+
+        </activity>
         <activity android:name=".views.CreateAccountActivity">
 
         </activity>

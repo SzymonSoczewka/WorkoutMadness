@@ -1,11 +1,12 @@
 package team12.workoutmadness.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import team12.workoutmadness.models.Exercise;
 
-public class Day {
+public class Day implements Serializable {
     private String name;
     private ArrayList<Exercise> exercises = new ArrayList<>();
 

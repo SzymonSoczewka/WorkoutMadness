@@ -1,10 +1,13 @@
 package team12.workoutmadness.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +25,15 @@ import androidx.fragment.app.Fragment;
 import java.util.Objects;
 
 import team12.workoutmadness.adapters.DaysAdapter;
+import team12.workoutmadness.models.Exercise;
+import team12.workoutmadness.views.DayActivity;
 import team12.workoutmadness.views.MainActivity;
 import team12.workoutmadness.R;
 import team12.workoutmadness.models.Day;
 import team12.workoutmadness.models.Workout;
 
 public class HomeFragment extends Fragment {
-    private static final String TAG = "HOME_FRAGMENT";
+    private static final int HOME_FRAGMENT = 102;
     private Context context;
     private ListView daysListView;
     private TextView title, welcomeLabel;
@@ -92,10 +97,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Day day = workout.getDays().get(position);
-                ((MainActivity) Objects.requireNonNull(getActivity())).setSelectedDay(day);
-                ((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
+                //((MainActivity) Objects.requireNonNull(getActivity())).setSelectedDay(day);
+                //((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
+                Intent i = new Intent(context, DayActivity.class);
+                i.putExtra("selectedDay",day);
+                startActivityForResult(i,HOME_FRAGMENT);
             }
         });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == HOME_FRAGMENT) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                Day day =  (Day) data.getExtras().getSerializable("selectedDay");
+
+                ((MainActivity) Objects.requireNonNull(getActivity())).updateSelectedDay(day);
+            }
+        }
     }
     //This method presents dialog for the user where he can change workout name
     private void showChangeNameDialog() {

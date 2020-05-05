@@ -38,23 +38,39 @@ public class ExerciseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.exercise, container, false);
         setViews(view);
+        setButtons(view);
+        return view;
+    }
+
+    //Getting access to .xml elements
+    private void setViews(View view) {
+        btnNewSet = view.findViewById(R.id.btn_new_set);
+        nameInput = view.findViewById(R.id.exercise_name_input);
+        btnSaveExercise = view.findViewById(R.id.save_exercise);
+        setsContainer = view.findViewById(R.id.sets_container);
+    }
+    //This method sets functionality for buttons
+    private void setButtons(final View view) {
+        //When this button is clicked, new row appears
         btnNewSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if(setRowsList.size()<10) {
-                        LinearLayout row = new LinearLayout(view.getContext());
-                        EditText reps = new EditText(view.getContext());
-                        EditText weight = new EditText(view.getContext());
-                        ImageButton removeSetButton = new ImageButton(view.getContext());
-                        setInputTextAttributes(reps, weight, removeSetButton, row);
-                        row.addView(reps);
-                        row.addView(weight);
-                        row.addView(removeSetButton);
-                        setsContainer.addView(row);
-                        setRowsList.add(row);
-                    }
+                if(setRowsList.size()<10) {
+                    LinearLayout row = new LinearLayout(view.getContext());
+                    EditText repsInput = new EditText(view.getContext());
+                    EditText weightInput = new EditText(view.getContext());
+                    ImageButton removeRowButton = new ImageButton(view.getContext());
+                    setInputTextAttributes(repsInput, weightInput, removeRowButton, row);
+                    row.addView(repsInput);
+                    row.addView(weightInput);
+                    row.addView(removeRowButton);
+                    setsContainer.addView(row);
+                    setRowsList.add(row);
+                }
             }
         });
+        //When this button is clicked, user's input is validated and either Exercise object created
+        //or Toast presented on the screen
         btnSaveExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,13 +81,8 @@ public class ExerciseFragment extends Fragment {
 
             }
         });
-        return view;
     }
-    @Override
-    public void onDestroyView() {
-        System.out.println("Destroyed - Exercise Fragment");
-        super.onDestroyView();
-    }
+    //This method retrieves user input and based on it creates Exercise object and adds it to the Workout
     private void createExercise() {
         ArrayList<Set> sets = new ArrayList<>();
         for(int i=0; i<setRowsList.size(); i++) {
@@ -95,7 +106,7 @@ public class ExerciseFragment extends Fragment {
         ((MainActivity)getActivity()).updateSelectedDay(selectedDay);
         ((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
     }
-
+    //This method is responsible for styling of the programmatically added views
     private void setInputTextAttributes(EditText reps, EditText weight, final ImageButton removeSetButton, final LinearLayout row) {
         reps.setInputType(InputType.TYPE_CLASS_NUMBER);
         reps.setFilters(new InputFilter[] {new InputFilter.LengthFilter(3)});
@@ -115,13 +126,7 @@ public class ExerciseFragment extends Fragment {
             }
         });
     }
-
-    private void setViews(View view) {
-        btnNewSet = view.findViewById(R.id.btn_new_set);
-        nameInput = view.findViewById(R.id.exercise_name_input);
-        btnSaveExercise = view.findViewById(R.id.save_exercise);
-        setsContainer = view.findViewById(R.id.sets_container);
-    }
+    //This method is checking user inputs and based on them, gives a green or red light for creating Exercise object
     private boolean validateInputs(){
         if(setRowsList.size()==0)
             return false;

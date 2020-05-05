@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
         title = view.findViewById(R.id.workout_title);
         welcomeLabel = view.findViewById(R.id.welcome_label);
         btnChangeName = view.findViewById(R.id.btn_change_name);
+        btnChangeName.setVisibility(View.INVISIBLE);
     }
     public  void setWorkout(Workout workout) {
         this.workout = workout;
@@ -63,6 +64,7 @@ public class HomeFragment extends Fragment {
             arrayAdapter.notifyDataSetChanged();
             daysListView.setAdapter(arrayAdapter);
             title.setText(workout.getName());
+            btnChangeName.setVisibility(View.VISIBLE);
             setListViewListener();
             setChangeNameButton();
     }

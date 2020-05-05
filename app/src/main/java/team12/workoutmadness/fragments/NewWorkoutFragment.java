@@ -42,6 +42,11 @@ public class NewWorkoutFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onDestroyView() {
+        System.out.println("Destroyed - New Workout Fragment");
+        super.onDestroyView();
+    }
     private void createWorkout(Context context) {
         if(!workoutName.getText().toString().isEmpty()) {
             String workoutName = this.workoutName.getText().toString();

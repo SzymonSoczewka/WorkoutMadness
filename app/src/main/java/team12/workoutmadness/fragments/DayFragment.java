@@ -44,7 +44,11 @@ public class DayFragment extends Fragment {
         loadDay();
         return  view;
     }
-
+    @Override
+    public void onDestroyView() {
+        System.out.println("Destroyed - Day Fragment");
+        super.onDestroyView();
+    }
     public void setAdapter() {
         if(selectedDay!= null && selectedDay.getExercises() != null){
             arrayAdapter = new ExercisesAdapter(context, selectedDay.getExercises());

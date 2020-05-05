@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         btnProfile = findViewById(R.id.btnProfile);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private void setupViewPager(final ViewPager viewPager){
         adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         adapter.addFragment(new HomeFragment(), "HOME");
@@ -106,13 +105,11 @@ public class MainActivity extends AppCompatActivity {
     public void setViewPager(int fragment_index){
         viewPager.setCurrentItem(fragment_index);
     }
-
     public void setCurrentWorkout(Workout workout) {
         currentWorkout = workout;
         HomeFragment hf = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
         hf.setWorkout(currentWorkout);
     }
-
     public void setSelectedDay(Day day) {
         selectedDay = day;
         DayFragment df = (DayFragment) adapter.getItem(DAY_FRAGMENT_INDEX);

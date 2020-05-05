@@ -67,7 +67,11 @@ public class ExerciseFragment extends Fragment {
         });
         return view;
     }
-
+    @Override
+    public void onDestroyView() {
+        System.out.println("Destroyed - Exercise Fragment");
+        super.onDestroyView();
+    }
     private void createExercise() {
         ArrayList<Set> sets = new ArrayList<>();
         for(int i=0; i<setRowsList.size(); i++) {

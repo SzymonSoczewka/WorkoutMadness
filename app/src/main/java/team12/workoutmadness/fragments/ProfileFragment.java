@@ -64,7 +64,11 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
-
+    @Override
+    public void onDestroyView() {
+        System.out.println("Destroyed - Profile Fragment");
+        super.onDestroyView();
+    }
     private void setPickers() {
         // Setting the height picker
         heightPicker.setMinValue(130);

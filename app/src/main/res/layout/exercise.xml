@@ -22,12 +22,12 @@
 
     <LinearLayout
         android:id="@+id/sets_container"
-        android:layout_width="333dp"
-        android:layout_height="558dp"
+        android:layout_width="329dp"
+        android:layout_height="560dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="25dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,12 +58,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="71dp"
+        android:layout_width="406dp"
+        android:layout_height="47dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

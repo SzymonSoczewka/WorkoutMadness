@@ -67,7 +67,7 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
     }
     //This method return set information depending on its content
     private String setDetails(int setNumber,Set set){
-        String s = setNumber+"s: "+set.getReps();
+        String s = setNumber+":  "+set.getReps();
         if(set.getWeight() == null) {
         return s + " reps";
         } else

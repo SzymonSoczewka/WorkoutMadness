@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment;
 import java.util.Objects;
 
 import team12.workoutmadness.adapters.DaysAdapter;
-import team12.workoutmadness.models.Exercise;
 import team12.workoutmadness.views.DayActivity;
 import team12.workoutmadness.views.MainActivity;
 import team12.workoutmadness.R;
@@ -82,7 +81,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    //This method is defines different listView behaviours based on different types of user behaviour
+    //This method is defines different listView behaviours based on different types of user behaviour - longPress/click
     private void setListViewListener(){
         //If user is pressing  ListView item longer, delete day dialog will appear
         daysListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -105,14 +104,13 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    //This method is responsible for handling finished Intent in DayActivity
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == HOME_FRAGMENT) {
             if (resultCode == Activity.RESULT_OK) {
-
                 Day day =  (Day) data.getExtras().getSerializable("selectedDay");
-
                 ((MainActivity) Objects.requireNonNull(getActivity())).updateSelectedDay(day);
             }
         }

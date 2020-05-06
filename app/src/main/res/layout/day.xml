@@ -13,8 +13,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,20 +25,12 @@
 
             <TextView
                 android:id="@+id/day_name"
-                android:layout_width="237dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center|end"
+                android:gravity="center"
                 android:text="Monday"
                 android:textSize="30sp" />
 
-            <ImageButton
-                android:id="@+id/new_exercise_icon"
-                android:layout_width="0dp"
-                android:layout_height="59dp"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                android:tint="@color/primaryColor"
-                app:srcCompat="@drawable/plus_24px" />
         </LinearLayout>
 
         <ListView
@@ -45,6 +39,35 @@
             android:layout_height="613dp">
 
         </ListView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sets_container">
+
+            <Button
+                android:id="@+id/btn_return_to_Home_Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Return" />
+
+            <Button
+                android:id="@+id/btn_new_exercise"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primaryColor"
+                android:text="New exercise" />
+        </LinearLayout>
 
     </LinearLayout>
 

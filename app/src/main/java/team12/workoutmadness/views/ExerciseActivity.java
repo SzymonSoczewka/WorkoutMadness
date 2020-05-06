@@ -83,13 +83,11 @@ public class ExerciseActivity extends AppCompatActivity {
             EditText repsInput = (EditText) setRowsList.get(i).getChildAt(0);
             int reps = Integer.parseInt(repsInput.getText().toString());
             EditText weightInput = (EditText) setRowsList.get(i).getChildAt(1);
-            double weight = Double.parseDouble(weightInput.getText().toString());
-            System.out.println("reps:" +reps);
-            System.out.println("weight: "+weight);
             if(weightInput.getText().length() == 0 ){
                 sets.add(new Set(reps));
             } else{
                 Set s = new Set(reps);
+                double weight = Double.parseDouble(weightInput.getText().toString());
                 s.setWeight(weight);
                 sets.add(s);
             }
@@ -97,12 +95,6 @@ public class ExerciseActivity extends AppCompatActivity {
         setRowsList.clear();
         String exerciseName = nameInput.getText().toString();
         Exercise exercise = new Exercise(exerciseName,sets);
-        /*
-        Day selectedDay = ((MainActivity)getActivity()).getSelectedDay();
-        selectedDay.addExercise(exercise);
-        ((MainActivity)getActivity()).updateSelectedDay(selectedDay);
-        ((MainActivity)getActivity()).setViewPager(MainActivity.DAY_FRAGMENT_INDEX);
-         */
         Intent intent = new Intent();
         intent.putExtra("newExercise",exercise);
         setResult(Activity.RESULT_OK,intent);

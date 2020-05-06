@@ -1,5 +1,6 @@
 package team12.workoutmadness.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class DaysAdapter extends ArrayAdapter<Day> {
         this.days = days;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
@@ -31,14 +33,16 @@ public class DaysAdapter extends ArrayAdapter<Day> {
         if(view == null)
         {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_view_element,null);
+            view = inflater.inflate(R.layout.day_lv_element,null);
         }
 
         Day day = days.get(position);
-        TextView day_name = view.findViewById(R.id.day_name);
-        day_name.setText(day.getName());
-        view.getPaddingBottom();
-
+        TextView dayName = view.findViewById(R.id.day_name);
+        dayName.setText(day.getName());
+        TextView exercisesCount = view.findViewById(R.id.exercises_count);
+        exercisesCount.setTextSize(20);
+        exercisesCount.setText(day.getExercises().size() + " exercise(s)");
+        view.setPadding(0,0,0,30);
         return view;
     }
 }

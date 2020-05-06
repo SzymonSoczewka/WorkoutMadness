@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/primaryColor"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName" />
@@ -46,44 +47,54 @@
         <CheckBox
             android:id="@+id/monday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:text="Monday" />
+            android:backgroundTint="#322121"
+            android:buttonTint="@color/primaryColor"
+            android:text="Monday"
+            android:textColorHighlight="@color/primaryColor" />
 
         <CheckBox
             android:id="@+id/tuesday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Tuesday" />
 
         <CheckBox
             android:id="@+id/wednesday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Wednesday" />
 
         <CheckBox
             android:id="@+id/thursday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Thursday" />
 
         <CheckBox
             android:id="@+id/friday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Friday" />
 
         <CheckBox
             android:id="@+id/saturday_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Saturday" />
 
         <CheckBox
             android:id="@+id/sunday_box"
+            style=""
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:buttonTint="@color/primaryColor"
             android:text="Sunday" />
 
         <Button
@@ -91,7 +102,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/primaryColor"
             android:text="Save" />
 
     </LinearLayout>

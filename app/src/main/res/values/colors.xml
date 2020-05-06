@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#d92987</color>
-    <color name="colorTabs">#D40070</color>
+    <color name="colorLoginView">#DC2367</color>
+    <color name="primaryColor">#DA627D</color>
+    <color name="colorTabs">#DA627D</color>
+    <color name="cardColor">#6ADC5959</color>
+
+    <color name="colorDivider">#FF000000</color>
     <color name="colorAccent">#bd3967</color>
     <color name="magenta">#F630B3</color>
 </resources>

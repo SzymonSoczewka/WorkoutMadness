@@ -1,6 +1,8 @@
 package team12.workoutmadness.models;
 
-public class Set {
+import java.io.Serializable;
+
+public class Set implements Serializable {
     private Double weight;
     private Integer reps;
     public Set(Integer reps){

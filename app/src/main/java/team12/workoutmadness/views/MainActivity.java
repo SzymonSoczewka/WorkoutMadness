@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import team12.workoutmadness.R;
 import team12.workoutmadness.adapters.SectionsPagerAdapter;
-import team12.workoutmadness.fragments.DayFragment;
 import team12.workoutmadness.fragments.HomeFragment;
 import team12.workoutmadness.fragments.NewWorkoutFragment;
 import team12.workoutmadness.fragments.ProfileFragment;
@@ -27,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
     public static final int HOME_FRAGMENT_INDEX = 0;
     public static final int NEW_WORKOUT_FRAGMENT_INDEX = 1;
     public static final int PROFILE_FRAGMENT_INDEX = 2;
-    public static final int DAY_FRAGMENT_INDEX = 3;
-    private ViewPager view_pager;
+    private Button btnHome, btnNew, btnProfile;
+    private ViewPager viewPager;
     SectionsPagerAdapter adapter;
-    Workout current_workout;
-    Day current_day;
+    Workout currentWorkout;
+    Day selectedDay;
 
 
     @Override
@@ -51,57 +50,66 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().add(R.id.container,new NewWorkoutFragment()).commit();
-        view_pager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(view_pager);
+        setViews();
+        setupViewPager(viewPager);
 
-        Button btnHome = findViewById(R.id.btnHome);
-        Button btnNew = findViewById(R.id.btnNew);
-        Button btnProfile = findViewById(R.id.btnProfile);
+
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setView_pager(HOME_FRAGMENT_INDEX);
+                setViewPager(HOME_FRAGMENT_INDEX);
             }
         });
 
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setView_pager(NEW_WORKOUT_FRAGMENT_INDEX);
+                setViewPager(NEW_WORKOUT_FRAGMENT_INDEX);
             }
         });
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setView_pager(PROFILE_FRAGMENT_INDEX);
+                setViewPager(PROFILE_FRAGMENT_INDEX);
             }
         });
 
     }
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setViews() {
+        viewPager = findViewById(R.id.container);
+        btnHome = findViewById(R.id.btnHome);
+        btnNew = findViewById(R.id.btnNew);
+        btnProfile = findViewById(R.id.btnProfile);
+    }
+
+    private void setupViewPager(final ViewPager viewPager){
         adapter = new SectionsPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        adapter.addFragment(new HomeFragment(), "Home");
-        adapter.addFragment(new NewWorkoutFragment(), "New Workout");
-        adapter.addFragment(new ProfileFragment(), "Profile");
-        adapter.addFragment(new DayFragment(),"Day");
+        adapter.addFragment(new HomeFragment(), "HOME");
+        adapter.addFragment(new NewWorkoutFragment(), "NEW_WORKOUT");
+        adapter.addFragment(new ProfileFragment(), "PROFILE");
         viewPager.setAdapter(adapter);
     }
 
-    public void setView_pager(int fragment_index){
-        view_pager.setCurrentItem(fragment_index);
+    public void setViewPager(int fragment_index){
+        viewPager.setCurrentItem(fragment_index);
+    }
+    public void setCurrentWorkout(Workout workout) {
+        currentWorkout = workout;
+        HomeFragment hf = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
+        hf.setWorkout(currentWorkout);
     }
 
-    public void setWorkout(Workout workout) {
-        current_workout = workout;
-        HomeFragment hf = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
-        hf.setWorkout(current_workout);
+    public void updateSelectedDay(Day day) {
+        selectedDay = day;
+        currentWorkout.updateDay(selectedDay);
+        HomeFragment df = (HomeFragment) adapter.getItem(HOME_FRAGMENT_INDEX);
+        df.setWorkout(currentWorkout);
     }
-    public void setDay(Day day) {
-        current_day = day;
-        DayFragment df = (DayFragment) adapter.getItem(DAY_FRAGMENT_INDEX);
-        df.setDay(current_day);
+    public Day getSelectedDay(){
+        return selectedDay;
     }
+
 }

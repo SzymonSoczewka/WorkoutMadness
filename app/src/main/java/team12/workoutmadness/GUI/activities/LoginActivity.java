@@ -1,4 +1,4 @@
-package team12.workoutmadness.views;
+package team12.workoutmadness.GUI.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,43 +17,45 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import team12.workoutmadness.BLL.BLLManager;
 import team12.workoutmadness.R;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LOGIN_ACTIVITY";
 
-    private FirebaseAuth mAuth;
 
-    EditText email;
-    EditText password;
-    Button btnLogin;
-    Button btnSignup;
 
-    Toast tstSuccess;
-    Toast tstFail;
-    Toast tstEmpty;
-
+    EditText emailInput, passwordInput;
+    Button btnLogin, btnSignup;
+    Toast tstSuccess, tstFail, tstEmpty;
+    FirebaseAuth mAuth = BLLManager.getInstance().getFirebaseAuth();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
+        setViews();
+        CreateToasts();
+        setButtons();
+    }
 
-        email = findViewById(R.id.editEmail);
-        password = findViewById(R.id.editPassword);
+
+    //Getting access to .xml elements
+    private void setViews() {
+        emailInput = findViewById(R.id.editEmail);
+        passwordInput = findViewById(R.id.editPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnSignup = findViewById(R.id.btnSignup);
-
-        CreateToasts();
-
+    }
+    //This method configures button behaviour
+    private void setButtons() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String e = email.getText().toString();
-                String p = password.getText().toString();
-                if(!e.isEmpty() && !p.isEmpty())
-                    TryLogin(e, p);
+                String email = emailInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                if(!email.isEmpty() && !password.isEmpty())
+                    TryLogin(email, password);
                 else
                     tstEmpty.show();
             }
@@ -66,10 +68,9 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
-    private boolean TryLogin(String email, String password) {
+    //This method communicates with the database and validates is user's credentials are valid
+    private void TryLogin(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,16 +82,15 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-        return false;
     }
-
+    //When user is successfully logged in, new Activity is opened
     private void SignIn() {
         tstSuccess.show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-
+    //This method initializes different Toasts to notify user during his login process
     private void CreateToasts() {
         tstSuccess = Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT);
         tstFail = Toast.makeText(this, "Wrong password or username", Toast.LENGTH_SHORT);

@@ -1,4 +1,4 @@
-package team12.workoutmadness.fragments;
+package team12.workoutmadness.GUI.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,17 +17,18 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import team12.workoutmadness.views.MainActivity;
+import team12.workoutmadness.BLL.BLLManager;
+import team12.workoutmadness.GUI.activities.MainActivity;
 import team12.workoutmadness.R;
-import team12.workoutmadness.models.Day;
-import team12.workoutmadness.models.Workout;
+import team12.workoutmadness.BE.Day;
+import team12.workoutmadness.BE.Workout;
 
 public class NewWorkoutFragment extends Fragment {
     private static final String TAG = "NEW_WORKOUT_FRAGMENT";
     private Button btnSave;
     private EditText workoutName;
     private CheckBox mon,tue,wed,thur,fri,sat,sun;
-
+    private BLLManager manager = BLLManager.getInstance();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +40,6 @@ public class NewWorkoutFragment extends Fragment {
                 createWorkout(getContext());
             }
         });
-
         return view;
     }
 
@@ -48,12 +48,21 @@ public class NewWorkoutFragment extends Fragment {
             String workoutName = this.workoutName.getText().toString();
             this.workoutName.getText().clear();
             Workout workout = new Workout(workoutName, getSelectedDays());
-            ((MainActivity) Objects.requireNonNull(getActivity())).setCurrentWorkout(workout);
-            ((MainActivity)getActivity()).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
+            manager.setCurrentWorkout(workout);
+            ((MainActivity) Objects.requireNonNull(getActivity())).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
+
+
         } else {
             Toast.makeText(context,"Name your workout and select days",Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void onDestroy() {
+        System.out.println("new workout destryed");
+        super.onDestroy();
+    }
+
     private void setViews(View view){
         //Button
         btnSave = view.findViewById(R.id.btnSave);

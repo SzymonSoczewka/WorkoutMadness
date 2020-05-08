@@ -1,4 +1,4 @@
-package team12.workoutmadness.views;
+package team12.workoutmadness.GUI.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import team12.workoutmadness.R;
-import team12.workoutmadness.models.Day;
-import team12.workoutmadness.models.Exercise;
-import team12.workoutmadness.models.Set;
+import team12.workoutmadness.BE.Exercise;
+import team12.workoutmadness.BE.Set;
 
 public class ExerciseActivity extends AppCompatActivity {
     private Button btnNewSet,btnSaveExercise;

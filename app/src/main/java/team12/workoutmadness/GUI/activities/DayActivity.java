@@ -1,4 +1,4 @@
-package team12.workoutmadness.views;
+package team12.workoutmadness.GUI.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,9 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import team12.workoutmadness.R;
-import team12.workoutmadness.adapters.ExercisesAdapter;
-import team12.workoutmadness.models.Day;
-import team12.workoutmadness.models.Exercise;
+import team12.workoutmadness.GUI.adapters.ExercisesAdapter;
+import team12.workoutmadness.BE.Day;
+import team12.workoutmadness.BE.Exercise;
 
 public class DayActivity extends AppCompatActivity {
     private static final int DAY_FRAGMENT = 101;

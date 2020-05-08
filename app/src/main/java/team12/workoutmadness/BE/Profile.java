@@ -1,4 +1,4 @@
-package team12.workoutmadness.models;
+package team12.workoutmadness.BE;
 
 public class Profile {
     private String id, name;

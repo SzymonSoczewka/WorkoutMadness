@@ -1,4 +1,4 @@
-package team12.workoutmadness.fragments;
+package team12.workoutmadness.GUI.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment;
 import team12.workoutmadness.R;
 
 public class BodyPartsFragment extends Fragment {
-    Button btnAbs,btnArms,btnShoulders,btnBack,btnLegs;
-    Button btnHips,btnChest,btnExtra,btnButtocks;
+    private Button btnAbs,btnArms,btnShoulders,btnBack,btnLegs;
+    private Button btnHips,btnChest,btnExtra,btnButtocks;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.body_parts, container, false);

@@ -1,4 +1,4 @@
-package team12.workoutmadness.models;
+package team12.workoutmadness.BE;
 
 import java.io.Serializable;
 

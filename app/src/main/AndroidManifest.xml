@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.MainActivity"
+        <activity android:name=".GUI.activities.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,16 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.LoginActivity">
+        <activity android:name=".GUI.activities.LoginActivity">
 
         </activity>
-        <activity android:name=".views.DayActivity">
+        <activity android:name=".GUI.activities.DayActivity">
 
         </activity>
-        <activity android:name=".views.ExerciseActivity">
+        <activity android:name=".GUI.activities.ExerciseActivity">
 
         </activity>
-        <activity android:name=".views.CreateAccountActivity">
+        <activity android:name=".GUI.activities.CreateAccountActivity">
 
         </activity>
     </application>

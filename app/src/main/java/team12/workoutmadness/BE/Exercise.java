@@ -1,9 +1,7 @@
-package team12.workoutmadness.models;
+package team12.workoutmadness.BE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import team12.workoutmadness.models.Set;
 
 public class Exercise implements Serializable {
     private String name;

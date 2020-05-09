@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.MainActivity"
+    tools:context=".GUI.activities.MainActivity"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
@@ -24,7 +24,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnHome"
+                android:id="@+id/btn_home"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -39,8 +39,8 @@
                 android:background="@color/colorDivider" />
 
             <Button
-                android:id="@+id/btnNew"
-                android:layout_width="120dp"
+                android:id="@+id/btn_new_workout"
+                android:layout_width="112dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/colorTabs"
@@ -54,12 +54,12 @@
                 android:background="@color/colorDivider" />
 
             <Button
-                android:id="@+id/btnProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:id="@+id/btn_body_parts"
+                android:layout_width="104dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/colorTabs"
-                android:text="Profile" />
+                android:text="Body parts" />
 
             <View
                 android:id="@+id/divider3"
@@ -69,12 +69,12 @@
                 android:background="@color/colorDivider" />
 
             <Button
-                android:id="@+id/btnEmpty"
-                android:layout_width="112dp"
+                android:id="@+id/btn_profile"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/colorTabs"
-                android:text="null" />
+                android:text="Profile" />
 
             <View
                 android:id="@+id/divider4"

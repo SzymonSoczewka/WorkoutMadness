@@ -1,4 +1,4 @@
-package team12.workoutmadness.adapters;
+package team12.workoutmadness.GUI.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import team12.workoutmadness.R;
-import team12.workoutmadness.models.Day;
+import team12.workoutmadness.BE.Day;
 
 public class DaysAdapter extends ArrayAdapter<Day> {
 

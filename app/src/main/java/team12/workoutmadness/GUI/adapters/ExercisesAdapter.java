@@ -1,4 +1,4 @@
-package team12.workoutmadness.adapters;
+package team12.workoutmadness.GUI.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,14 +12,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
 import team12.workoutmadness.R;
-import team12.workoutmadness.models.Day;
-import team12.workoutmadness.models.Exercise;
-import team12.workoutmadness.models.Set;
+import team12.workoutmadness.BE.Exercise;
+import team12.workoutmadness.BE.Set;
 
 public class ExercisesAdapter extends ArrayAdapter<Exercise> {
 
@@ -67,7 +65,7 @@ public class ExercisesAdapter extends ArrayAdapter<Exercise> {
     }
     //This method return set information depending on its content
     private String setDetails(int setNumber,Set set){
-        String s = setNumber+"s: "+set.getReps();
+        String s = setNumber+":  "+set.getReps();
         if(set.getWeight() == null) {
         return s + " reps";
         } else

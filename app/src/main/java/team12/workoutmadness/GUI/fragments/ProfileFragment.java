@@ -1,4 +1,4 @@
-package team12.workoutmadness.fragments;
+package team12.workoutmadness.GUI.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DecimalFormat;
 
-import team12.workoutmadness.views.LoginActivity;
+import team12.workoutmadness.GUI.activities.LoginActivity;
 import team12.workoutmadness.R;
 
 public class ProfileFragment extends Fragment {

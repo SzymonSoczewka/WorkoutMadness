@@ -11,7 +11,7 @@ public class Exercise implements Serializable {
         this.name = name;
         this.sets = sets;
     }
-
+    public Exercise(){}
     public String getName() {
         return name;
     }

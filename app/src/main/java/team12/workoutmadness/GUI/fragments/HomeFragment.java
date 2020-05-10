@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         System.out.println("was resumed");
         workout = manager.getCurrentWorkout();
+        System.out.println("Is it null? "+workout);
         if(workout!=null)
         loadWorkout(workout);
         super.onResume();

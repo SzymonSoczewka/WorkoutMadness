@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Workout implements Serializable {
+    private String userID;
     private String name;
     private ArrayList<Day> days;
     public Workout(String name, ArrayList<Day> days){
         this.name = name;
         this.days = days;
     }
+    public Workout(){}
 
     public String getName() {
         return name;
@@ -36,5 +38,10 @@ public class Workout implements Serializable {
             }
         }
     }
-
+    public String getUserID() {
+        return userID;
+    }
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 }

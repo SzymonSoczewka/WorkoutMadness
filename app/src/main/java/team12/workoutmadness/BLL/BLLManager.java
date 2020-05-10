@@ -6,15 +6,14 @@ import com.google.firebase.auth.FirebaseUser;
 import team12.workoutmadness.BE.Day;
 import team12.workoutmadness.BE.Workout;
 import team12.workoutmadness.DAL.FirebaseDB;
-import team12.workoutmadness.GUI.fragments.HomeFragment;
 
 public class BLLManager
 {
     private static BLLManager instance = null;
-    private FirebaseDB db = null;
+    private FirebaseDB firebase;
     private BLLManager()
     {
-        db = new FirebaseDB();
+        firebase = new FirebaseDB();
     }
 
     public static BLLManager getInstance()
@@ -25,22 +24,22 @@ public class BLLManager
         return instance;
     }
     public void setCurrentWorkout(Workout currentWorkout) {
-        db.setWorkout(currentWorkout);
+        firebase.setWorkout(currentWorkout);
     }
     public Workout getCurrentWorkout(){
-        return db.getCurrentWorkout();
+        return firebase.getCurrentWorkout();
     }
 
     public void updateSelectedDay(Day selectedDay) {
-        db.updateDay(selectedDay);
+        firebase.updateDay(selectedDay);
     }
     public Day getSelectedDay(){
-        return db.getSelectedDay();
+        return firebase.getSelectedDay();
     }
     public FirebaseAuth getFirebaseAuth(){
-        return db.getFirebaseAuth();
+        return firebase.getFirebaseAuth();
     }
     public FirebaseUser getFirebaseUser(){
-        return db.getFirebaseUser();
+        return firebase.getFirebaseUser();
     }
 }

@@ -10,7 +10,7 @@ public class Day implements Serializable {
     public Day(String name) {
         this.name = name;
     }
-
+    public Day(){}
     public String getName() {
         return name;
     }

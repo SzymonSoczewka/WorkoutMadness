@@ -48,6 +48,7 @@ public class NewWorkoutFragment extends Fragment {
             String workoutName = this.workoutName.getText().toString();
             this.workoutName.getText().clear();
             Workout workout = new Workout(workoutName, getSelectedDays());
+            workout.setUserID(manager.getFirebaseUser().getUid());
             manager.setCurrentWorkout(workout);
             ((MainActivity) Objects.requireNonNull(getActivity())).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
 

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseUser firebaseUser = BLLManager.getInstance().getFirebaseUser();
+        FirebaseUser firebaseUser = BLLManager.getInstance(this).getFirebaseUser();
 
         if(firebaseUser == null){
             Intent intent = new Intent(this, LoginActivity.class);

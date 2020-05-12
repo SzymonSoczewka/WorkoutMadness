@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailInput, passwordInput;
     Button btnLogin, btnSignup;
     Toast tstSuccess, tstFail, tstEmpty;
-    FirebaseAuth mAuth = BLLManager.getInstance().getFirebaseAuth();
+    FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

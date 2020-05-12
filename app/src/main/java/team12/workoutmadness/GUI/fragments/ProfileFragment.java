@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.DecimalFormat;
 
+import team12.workoutmadness.BLL.BLLManager;
 import team12.workoutmadness.GUI.activities.LoginActivity;
 import team12.workoutmadness.R;
 
@@ -26,24 +27,20 @@ public class ProfileFragment extends Fragment {
     private static final String TAG = "PROFILE_FRAGMENT";
     private NumberPicker heightPicker, weightPicker, agePicker;
     private int height, weight, age, bmi;
-    private TextView txtPBmi;
+    private TextView txtPBmi,nameTag;
     private Button btnPSave;
     private Button btnSignout;
+    private BLLManager manager = BLLManager.getInstance(null);
 
-    private FirebaseAuth mAuth;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile, container, false);
+        setViews(view);
+        nameTag.setText(manager.getFirebaseUsername());
 
-        heightPicker = (NumberPicker) view.findViewById(R.id.height_picker);
-        weightPicker = (NumberPicker) view.findViewById(R.id.weight_picker);
-        agePicker = (NumberPicker) view.findViewById(R.id.age_picker);
-        txtPBmi = (TextView) view.findViewById(R.id.txtPBmi);
-        btnSignout = view.findViewById(R.id.btnSignout);
-
-        mAuth = FirebaseAuth.getInstance();
+        final FirebaseAuth mAuth = manager.getFirebaseAuth();
 
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +61,16 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
-    @Override
-    public void onDestroyView() {
-        System.out.println("Destroyed - Profile Fragment");
-        super.onDestroyView();
+
+    private void setViews(View view) {
+        heightPicker = view.findViewById(R.id.height_picker);
+        weightPicker = view.findViewById(R.id.weight_picker);
+        agePicker = view.findViewById(R.id.age_picker);
+        txtPBmi = view.findViewById(R.id.txtPBmi);
+        btnSignout = view.findViewById(R.id.btnSignout);
+        nameTag = view.findViewById(R.id.nameTag);
     }
+
     private void setPickers() {
         // Setting the height picker
         heightPicker.setMinValue(130);

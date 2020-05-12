@@ -8,7 +8,7 @@ public class Set implements Serializable {
     public Set(Integer reps){
         this.reps = reps;
     }
-
+    public Set(){}
     public Double getWeight() {
         return weight;
     }

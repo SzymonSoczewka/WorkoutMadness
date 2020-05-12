@@ -20,7 +20,7 @@ import team12.workoutmadness.R;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth = BLLManager.getInstance().getFirebaseAuth();
+    FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
     EditText email,name,password,password2;
     Button btnCancel,btnCreate;
     Toast tstSuccess,tstFail,tstEmpty,tstNoMatch;
@@ -38,7 +38,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void setViews() {
         email = findViewById(R.id.editEmail);
-        name = findViewById(R.id.editName);
         password = findViewById(R.id.editPassword);
         password2 = findViewById(R.id.editPassword2);
         btnCancel = findViewById(R.id.btnCancel);

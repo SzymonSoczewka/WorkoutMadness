@@ -28,7 +28,7 @@ public class NewWorkoutFragment extends Fragment {
     private Button btnSave;
     private EditText workoutName;
     private CheckBox mon,tue,wed,thur,fri,sat,sun;
-    private BLLManager manager = BLLManager.getInstance();
+    private BLLManager manager = BLLManager.getInstance(null);
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,8 +47,8 @@ public class NewWorkoutFragment extends Fragment {
         if(!workoutName.getText().toString().isEmpty()) {
             String workoutName = this.workoutName.getText().toString();
             this.workoutName.getText().clear();
-            Workout workout = new Workout(workoutName, getSelectedDays());
-            manager.setCurrentWorkout(workout);
+            Workout workout = new Workout(manager.getNextID(), workoutName, getSelectedDays());
+            manager.addWorkout(workout);
             ((MainActivity) Objects.requireNonNull(getActivity())).setViewPager(MainActivity.HOME_FRAGMENT_INDEX);
 
 

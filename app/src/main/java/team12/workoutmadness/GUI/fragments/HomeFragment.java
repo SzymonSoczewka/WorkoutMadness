@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
     private Context context;
     private Spinner title;
     private int lastSelection = 0;
+    private int lastSize = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,9 +74,14 @@ public class HomeFragment extends Fragment {
     //to display its data and load it afterwards
     private void loadWorkouts(boolean initialLoad) {
         workouts = manager.getWorkouts();
+        //If new workout was created, initialLoad will be executed
+        if(lastSize < workouts.size()) {
+            initialLoad = true;
+            lastSize = workouts.size();
+        }
         if(workouts.size()>0) {
             workout = workouts.get(lastSelection);
-            setVisibilityEmptyMode();
+            setVisibilityNormalMode();
             if(initialLoad)
             setSpinner();
             loadListView(workout);
@@ -90,7 +96,7 @@ public class HomeFragment extends Fragment {
         welcomeLabel.setText("Welcome "+ manager.getFirebaseUsername());
         btnChangeName = view.findViewById(R.id.btn_change_name);
         newWorkoutButton = view.findViewById(R.id.new_workout_button);
-        setVisibilityNormalMode();
+        setVisibilityEmptyMode();
     }
 
     //This method is loading list view of days of currently selected workout
@@ -99,13 +105,13 @@ public class HomeFragment extends Fragment {
             daysListView.setAdapter(arrayAdapter);
     }
     //This mode of visibility is used when DB is empty
-    private void setVisibilityEmptyMode(){
+    private void setVisibilityNormalMode(){
         btnChangeName.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
         newWorkoutButton.setVisibility(View.INVISIBLE);
     }
     //This mode of visibility is used when at least one workout is in DB
-    private void setVisibilityNormalMode(){
+    private void setVisibilityEmptyMode(){
         newWorkoutButton.setVisibility(View.VISIBLE);
         btnChangeName.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
@@ -242,7 +248,7 @@ public class HomeFragment extends Fragment {
                         loadListView(workout);
                         setSpinner();
                     }else {
-                        setVisibilityNormalMode();
+                        setVisibilityEmptyMode();
                         daysListView.setAdapter(null);
                     }
                 }

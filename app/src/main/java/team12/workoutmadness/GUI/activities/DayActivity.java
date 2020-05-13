@@ -22,7 +22,9 @@ import team12.workoutmadness.BE.Day;
 import team12.workoutmadness.BE.Exercise;
 
 public class DayActivity extends AppCompatActivity {
-    private static final int DAY_FRAGMENT = 101;
+    private static final int DAY_FRAGMENT_CREATE = 101;
+    private static final int DAY_FRAGMENT_UPDATE = 201;
+    private int lastSelection = 0;
     private TextView dayName;
     private Day selectedDay;
     private Button btnNewExercise,btnReturn;
@@ -56,7 +58,7 @@ public class DayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, ExerciseActivity.class);
-                startActivityForResult(i,DAY_FRAGMENT);
+                startActivityForResult(i, DAY_FRAGMENT_CREATE);
             }
         });
         btnReturn.setOnClickListener(new View.OnClickListener() {
@@ -70,12 +72,17 @@ public class DayActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == DAY_FRAGMENT) {
+        if (requestCode == DAY_FRAGMENT_CREATE) {
             if (resultCode == Activity.RESULT_OK) {
                 Exercise newExercise =  (Exercise) data.getExtras().getSerializable("newExercise");
                 selectedDay.addExercise(newExercise);
                 setAdapter();
             }
+        } else if (requestCode == DAY_FRAGMENT_UPDATE) {
+                Exercise exerciseUpdated =  (Exercise) data.getExtras().getSerializable("exerciseUpdated");
+                selectedDay.getExercises().get(lastSelection).setSets(exerciseUpdated.getSets());
+                selectedDay.getExercises().get(lastSelection).setName(exerciseUpdated.getName());
+                setAdapter();
         }
     }
     //This method overrides behaviour when back button is pressed
@@ -124,7 +131,10 @@ public class DayActivity extends AppCompatActivity {
         exercisesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent i = new Intent(context, ExerciseActivity.class);
+                lastSelection = position;
+                i.putExtra("exerciseToUpdate", selectedDay.getExercises().get(position));
+                startActivityForResult(i, DAY_FRAGMENT_UPDATE);
             }
         });
     }

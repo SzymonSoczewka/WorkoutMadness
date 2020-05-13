@@ -1,6 +1,7 @@
 package team12.workoutmadness.GUI.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import team12.workoutmadness.BE.Day;
 import team12.workoutmadness.R;
 import team12.workoutmadness.BE.Exercise;
 import team12.workoutmadness.BE.Set;
@@ -28,13 +30,26 @@ public class ExerciseActivity extends AppCompatActivity {
     private EditText nameInput;
     private LinearLayout setsContainer;
     private ArrayList<LinearLayout> setRowsList = new ArrayList<>();
+    private Exercise exerciseToUpdate;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise);
         setViews();
         setButtons();
+        exerciseToUpdate = (Exercise) getIntent().getSerializableExtra("exerciseToUpdate");
+        if(exerciseToUpdate!=null){
+            prepareForUpdate();
+        }
     }
+    //This method will load all the data of the "exerciseToUpdate"
+    private void prepareForUpdate() {
+        nameInput.setText(exerciseToUpdate.getName());
+        for (int i=0; i<exerciseToUpdate.getSets().size(); i++){
+            createNewSet(true, i);
+        }
+    }
+
     //Getting access to .xml elements
     private void setViews() {
         btnNewSet = findViewById(R.id.btn_new_set);
@@ -44,21 +59,13 @@ public class ExerciseActivity extends AppCompatActivity {
     }
     //This method sets functionality for buttons
     private void setButtons() {
-        //When this button is clicked, new row appears
+        //When this button is clicked, new row appears (max 10 rows)
+        final Context context = getWindow().getContext();
         btnNewSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(setRowsList.size()<10) {
-                    LinearLayout row = new LinearLayout(getWindow().getContext());
-                    EditText repsInput = new EditText(getWindow().getContext());
-                    EditText weightInput = new EditText(getWindow().getContext());
-                    ImageButton removeRowButton = new ImageButton(getWindow().getContext());
-                    setInputTextAttributes(repsInput, weightInput, removeRowButton, row);
-                    row.addView(repsInput);
-                    row.addView(weightInput);
-                    row.addView(removeRowButton);
-                    setsContainer.addView(row);
-                    setRowsList.add(row);
+                   createNewSet(false,0);
                 }
             }
         });
@@ -70,11 +77,35 @@ public class ExerciseActivity extends AppCompatActivity {
                 if(validateInputs())
                     createExercise();
                 else
-                    Toast.makeText(getWindow().getContext(),"Name the exercise and insert reps for all sets",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Name the exercise and insert reps for all sets",Toast.LENGTH_SHORT).show();
 
             }
         });
     }
+    //This method is creating all elements for a row in which user provides his input
+    private void createNewSet(boolean updateMode, int setIndex) {
+        final Context context = getWindow().getContext();
+
+        LinearLayout row = new LinearLayout(context);
+        EditText repsInput = new EditText(context);
+        EditText weightInput = new EditText(context);
+
+        if(updateMode) {
+            Set set = exerciseToUpdate.getSets().get(setIndex);
+            repsInput.setText(set.getReps().toString());
+            if(set.getWeight()!=null)
+                weightInput.setText(set.getWeight().toString());
+        }
+
+        ImageButton removeRowButton = new ImageButton(context);
+        setInputTextAttributes(repsInput, weightInput, removeRowButton, row);
+        row.addView(repsInput);
+        row.addView(weightInput);
+        row.addView(removeRowButton);
+        setsContainer.addView(row);
+        setRowsList.add(row);
+    }
+
     //This method retrieves user input and based on it creates Exercise object and adds it to the Workout
     private void createExercise() {
         ArrayList<Set> sets = new ArrayList<>();
@@ -94,12 +125,19 @@ public class ExerciseActivity extends AppCompatActivity {
         setRowsList.clear();
         String exerciseName = nameInput.getText().toString();
         Exercise exercise = new Exercise(exerciseName,sets);
+        finishIntent(exercise);
+    }
+    //This method will finish current intent
+    private void finishIntent(Exercise exercise){
         Intent intent = new Intent();
-        intent.putExtra("newExercise",exercise);
+        if(exerciseToUpdate == null)
+            intent.putExtra("newExercise",exercise);
+        else
+            intent.putExtra("exerciseUpdated",exercise);
         setResult(Activity.RESULT_OK,intent);
         finish();
-
     }
+
     //This method is responsible for styling of the programmatically added views
     private void setInputTextAttributes(EditText reps, EditText weight, final ImageButton removeSetButton, final LinearLayout row) {
         reps.setInputType(InputType.TYPE_CLASS_NUMBER);

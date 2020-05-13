@@ -28,27 +28,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import team12.workoutmadness.BLL.BLLManager;
-import team12.workoutmadness.GUI.activities.MainActivity;
-import team12.workoutmadness.GUI.adapters.DaysAdapter;
-import team12.workoutmadness.GUI.activities.DayActivity;
-import team12.workoutmadness.R;
 import team12.workoutmadness.BE.Day;
 import team12.workoutmadness.BE.Workout;
+import team12.workoutmadness.BLL.BLLManager;
+import team12.workoutmadness.GUI.activities.DayActivity;
+import team12.workoutmadness.GUI.activities.MainActivity;
+import team12.workoutmadness.GUI.adapters.DaysAdapter;
+import team12.workoutmadness.R;
 
 public class HomeFragment extends Fragment {
-    private static final int HOME_FRAGMENT = 102;
     private BLLManager manager = BLLManager.getInstance(null);
-    private Context context;
-    private ListView daysListView;
-    private TextView welcomeLabel;
-    private Spinner title;
+    private static final int HOME_FRAGMENT = 102;
     private ArrayList<Workout> workouts;
-    private Workout workout;
     private ImageButton btnChangeName;
     private Button newWorkoutButton;
-    private ArrayAdapter arrayAdapter;
-    @SuppressLint("SetTextI18n")
+    private ListView daysListView;
+    private Workout workout;
+    private Context context;
+    private Spinner title;
+    private int lastSelection = 0;
+    private int lastSize = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,57 +55,63 @@ public class HomeFragment extends Fragment {
         this.context = getContext();
         setViews(view);
         setNewWorkoutButton();
-        welcomeLabel.setText("Welcome "+ manager.getFirebaseUsername());
-        workouts = manager.getWorkouts();
-        if(workouts.size()>0) {
-            workout = workouts.get(0);
-            setVisibilityWithWorkouts();
-            setSpinner();
-            setTitleSpinnerListener();
-            loadWorkout(workout);
-        }
+        loadWorkouts(true);
+        setListViewListener();
+        setTitleSpinnerListener();
+        setChangeNameButton();
         return view;
     }
+
+
+
     //This method loads the workout when the fragment is resumed
     @Override
     public void onResume() {
-        System.out.println("was resumed");
-        workouts = manager.getWorkouts();
-        if(workouts.size()>0) {
-            workout = workouts.get(0);
-            setSpinner();
-            setVisibilityWithWorkouts();
-            loadWorkout(workout);
-        }
+        loadWorkouts(false);
         super.onResume();
     }
-
+    //When DB contains at least one workout, this method will retrieve the data, prepare fragment
+    //to display its data and load it afterwards
+    private void loadWorkouts(boolean initialLoad) {
+        workouts = manager.getWorkouts();
+        //If new workout was created, initialLoad will be executed
+        if(lastSize < workouts.size()) {
+            initialLoad = true;
+            lastSize = workouts.size();
+        }
+        if(workouts.size()>0) {
+            workout = workouts.get(lastSelection);
+            setVisibilityNormalMode();
+            if(initialLoad)
+            setSpinner();
+            loadListView(workout);
+        }
+    }
     //Getting access to .xml elements
+    @SuppressLint("SetTextI18n")
     private void setViews(View view) {
         daysListView = view.findViewById(R.id.workout_list_view);
         title = view.findViewById(R.id.workout_title);
-        welcomeLabel = view.findViewById(R.id.welcome_label);
+        TextView welcomeLabel = view.findViewById(R.id.welcome_label);
+        welcomeLabel.setText("Welcome "+ manager.getFirebaseUsername());
         btnChangeName = view.findViewById(R.id.btn_change_name);
         newWorkoutButton = view.findViewById(R.id.new_workout_button);
-        setVisibilityNoWorkouts();
+        setVisibilityEmptyMode();
     }
 
-    //This method is responsible for loading content for this fragment as soon as it contains workout
-    private void loadWorkout(Workout workout){
-            arrayAdapter = new DaysAdapter(context, workout.getDays());
-            arrayAdapter.notifyDataSetChanged();
+    //This method is loading list view of days of currently selected workout
+    private void loadListView(Workout workout){
+            ArrayAdapter arrayAdapter = new DaysAdapter(context, workout.getDays());
             daysListView.setAdapter(arrayAdapter);
-            setListViewListener();
-            setChangeNameButton();
     }
-    //Some items might appear or disappear if there is no workout in DB
-    private void setVisibilityWithWorkouts(){
+    //This mode of visibility is used when DB is empty
+    private void setVisibilityNormalMode(){
         btnChangeName.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
         newWorkoutButton.setVisibility(View.INVISIBLE);
     }
-    //Some items might appear or disappear if there is no workout in DB
-    private void setVisibilityNoWorkouts(){
+    //This mode of visibility is used when at least one workout is in DB
+    private void setVisibilityEmptyMode(){
         newWorkoutButton.setVisibility(View.VISIBLE);
         btnChangeName.setVisibility(View.INVISIBLE);
         title.setVisibility(View.INVISIBLE);
@@ -125,7 +130,6 @@ public class HomeFragment extends Fragment {
 
         // attaching data adapter to spinner
         title.setAdapter(dataAdapter);
-
     }
     //This method configures button behaviour
     private void setChangeNameButton() {
@@ -136,6 +140,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    //This method configures button behaviour
     private void setNewWorkoutButton(){
         newWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,8 +176,10 @@ public class HomeFragment extends Fragment {
         title.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            workout = workouts.get(position);
-            loadWorkout(workout);
+            System.out.println("onItemSelected was fired. Position: "+ position + " lastSelection: "+ lastSelection);
+                lastSelection = position;
+                workout = workouts.get(position);
+                loadListView(workout);
             }
 
             @Override
@@ -210,8 +217,9 @@ public class HomeFragment extends Fragment {
                 String newName = input.getText().toString();
                 workout.setName(newName);
                 manager.updateWorkout(workout);
-                workouts = manager.getWorkouts();
                 setSpinner();
+                title.setSelection(lastSelection);
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -237,17 +245,17 @@ public class HomeFragment extends Fragment {
                     workouts = manager.getWorkouts();
                     if(workouts.size()>0) {
                         workout = workouts.get(0);
-                        loadWorkout(workout);
+                        loadListView(workout);
                         setSpinner();
                     }else {
-                        setVisibilityNoWorkouts();
+                        setVisibilityEmptyMode();
                         daysListView.setAdapter(null);
                     }
                 }
                 else {
                     workout.getDays().remove(position);
                     manager.updateWorkout(workout);
-                    loadWorkout(workout);
+                    loadListView(workout);
                 }
             }
         });

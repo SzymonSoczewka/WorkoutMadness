@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnHome, btnNew, btnProfile, btnBodyParts;
     private ViewPager viewPager;
     SectionsPagerAdapter adapter;
+    private LinearLayout tabBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btnNew = findViewById(R.id.btn_new_workout);
         btnProfile = findViewById(R.id.btn_profile);
         btnBodyParts = findViewById(R.id.btn_body_parts);
+        tabBar = findViewById(R.id.tab_bar);
     }
     //This method configures button behaviour
     private void setButtons() {
@@ -104,5 +107,6 @@ public class MainActivity extends AppCompatActivity {
     public void setViewPager(int fragment_index){
         viewPager.setCurrentItem(fragment_index);
     }
+
 
 }

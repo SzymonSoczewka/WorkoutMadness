@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".GUI.activities.MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan">
+            android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"
+            android:screenOrientation="nosensor">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

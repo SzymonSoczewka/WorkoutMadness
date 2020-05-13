@@ -46,6 +46,7 @@ public class HomeFragment extends Fragment {
     private Workout workout;
     private Context context;
     private Spinner title;
+    private int lastSelection = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class HomeFragment extends Fragment {
         this.context = getContext();
         setViews(view);
         setNewWorkoutButton();
-        loadWorkouts();
+        loadWorkouts(true);
         setListViewListener();
         setTitleSpinnerListener();
         setChangeNameButton();
@@ -65,21 +66,21 @@ public class HomeFragment extends Fragment {
     //This method loads the workout when the fragment is resumed
     @Override
     public void onResume() {
-        loadWorkouts();
+        loadWorkouts(false);
         super.onResume();
     }
     //When DB contains at least one workout, this method will retrieve the data, prepare fragment
     //to display its data and load it afterwards
-    private void loadWorkouts() {
+    private void loadWorkouts(boolean initialLoad) {
         workouts = manager.getWorkouts();
         if(workouts.size()>0) {
-            workout = workouts.get(0);
+            workout = workouts.get(lastSelection);
             setVisibilityEmptyMode();
+            if(initialLoad)
             setSpinner();
             loadListView(workout);
         }
     }
-
     //Getting access to .xml elements
     @SuppressLint("SetTextI18n")
     private void setViews(View view) {
@@ -169,8 +170,10 @@ public class HomeFragment extends Fragment {
         title.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            workout = workouts.get(position);
-            loadListView(workout);
+            System.out.println("onItemSelected was fired. Position: "+ position + " lastSelection: "+ lastSelection);
+                lastSelection = position;
+                workout = workouts.get(position);
+                loadListView(workout);
             }
 
             @Override
@@ -208,8 +211,9 @@ public class HomeFragment extends Fragment {
                 String newName = input.getText().toString();
                 workout.setName(newName);
                 manager.updateWorkout(workout);
-                workouts = manager.getWorkouts();
                 setSpinner();
+                title.setSelection(lastSelection);
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

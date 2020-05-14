@@ -47,7 +47,7 @@
                 android:inputType="textPersonName" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/exercise_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:layout_weight="1" />

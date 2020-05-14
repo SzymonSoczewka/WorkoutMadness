@@ -9,11 +9,13 @@ public class Workout implements Serializable {
     private int id;
     private String name;
     private ArrayList<Day> days;
+
     public Workout(int id, String name, ArrayList<Day> days){
         this.id = id;
         this.name = name;
         this.days = days;
     }
+
     public Workout(){}
 
     public String getName() {

@@ -8,35 +8,44 @@ import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import team12.workoutmadness.BE.Day;
+import team12.workoutmadness.BE.Workout;
 import team12.workoutmadness.R;
 import team12.workoutmadness.BE.Exercise;
 import team12.workoutmadness.BE.Set;
 
 public class ExerciseActivity extends AppCompatActivity {
-    private Button btnNewSet,btnSaveExercise;
-    private EditText nameInput;
-    private LinearLayout setsContainer;
     private ArrayList<LinearLayout> setRowsList = new ArrayList<>();
+    private Button btnNewSet,btnSaveExercise;
+    private LinearLayout setsContainer;
     private Exercise exerciseToUpdate;
+    private Spinner exerciseSpinner;
+    private EditText nameInput;
+    private Context context;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise);
+        context = getWindow().getContext();
         setViews();
         setButtons();
+        setSpinner();
         exerciseToUpdate = (Exercise) getIntent().getSerializableExtra("exerciseToUpdate");
         if(exerciseToUpdate!=null){
             prepareForUpdate();
@@ -56,11 +65,18 @@ public class ExerciseActivity extends AppCompatActivity {
         nameInput = findViewById(R.id.exercise_name_input);
         btnSaveExercise = findViewById(R.id.save_exercise);
         setsContainer = findViewById(R.id.sets_container);
+        exerciseSpinner = findViewById(R.id.exercise_spinner);
+    }
+    //This method overrides behaviour when back button is pressed
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(Activity.RESULT_CANCELED,intent);
+        finish();
     }
     //This method sets functionality for buttons
     private void setButtons() {
         //When this button is clicked, new row appears (max 10 rows)
-        final Context context = getWindow().getContext();
         btnNewSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +94,34 @@ public class ExerciseActivity extends AppCompatActivity {
                     createExercise();
                 else
                     Toast.makeText(context,"Name the exercise and insert reps for all sets",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+    private void setSpinner(){
+        final List<String> exercises = new ArrayList<>();
+        exercises.add("Push-ups");
+        exercises.add("Pull-ups");
+        exercises.add("Dead-lift");
+        exercises.add("Squats");
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, R.layout.workout_spinner, exercises);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        exerciseSpinner.setAdapter(dataAdapter);
+
+        exerciseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(!nameInput.getText().toString().isEmpty())
+                nameInput.setText(exercises.get(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });

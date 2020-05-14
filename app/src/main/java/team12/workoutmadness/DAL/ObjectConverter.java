@@ -6,13 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import team12.workoutmadness.BE.Day;
-import team12.workoutmadness.BE.Workout;
 
 public class ObjectConverter {
-    public static byte[] makebyte(ArrayList<Day> modeldata) {
+    public static byte[] toByte(ArrayList<Day> modeldata) {
         try {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -27,7 +25,7 @@ public class ObjectConverter {
 
         return null;
     }
-    public static ArrayList<Day> read(byte[] data) {
+    public static ArrayList<Day> fromByte(byte[] data) {
         try {
 
 

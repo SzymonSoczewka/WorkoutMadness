@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -17,8 +16,22 @@ public class WorkoutDB implements IWorkoutDB{
 
     private static final String DATABASE_NAME = "sqlite.WorkoutDB";
     private static final int DATABASE_VERSION = 2;
+    private static final String COL_ID = "id";
+    //TABLES
     private static final String TABLE_WORKOUT = "Workouts";
     private static final String TABLE_PROFILE = "Profiles";
+    //WORKOUT COLUMNS
+    private static final String COL_NAME= "name";
+    private static final String COL_DAYS = "days";
+    //PROFILE COLUMNS
+    private static final String COL_HEIGHT = "height";
+    private static final String COL_WEIGHT = "weight";
+    private static final String COL_ARM = "arm";
+    private static final String COL_CHEST = "chest";
+    private static final String COL_HIPS = "hips";
+    private static final String COL_WAIST = "waist";
+    private static final String COL_THIGHS = "thighs";
+    private static final String COL_CALVES = "calves";
 
     private SQLiteDatabase sqLiteDatabase;
     private SQLiteStatement insertWorkoutStatement;
@@ -62,41 +75,38 @@ public class WorkoutDB implements IWorkoutDB{
     @Override
     public void updateWorkout(Workout workout) {
         ContentValues cv = new ContentValues();
-        cv.put("name",workout.getName());
-        cv.put("days",ObjectConverter.toByte(workout.getDays()));
-        sqLiteDatabase.update(TABLE_WORKOUT, cv, "id="+workout.getId(), null);
-        System.out.println("Workout updated");
+        cv.put(COL_NAME,workout.getName());
+        cv.put(COL_DAYS,ObjectConverter.toByte(workout.getDays()));
+        sqLiteDatabase.update(TABLE_WORKOUT, cv, COL_ID+"="+workout.getId(), null);
     }
 
     @Override
     public void updateProfile(Profile profile) {
         ContentValues cv = new ContentValues();
-        cv.put("height",profile.getHeight());
-        cv.put("weight",profile.getWeight());
-        cv.put("arm",profile.getArm());
-        cv.put("chest",profile.getChest());
-        cv.put("hips",profile.getHips());
-        cv.put("waist",profile.getWaist());
-        cv.put("thighs",profile.getThighs());
-        cv.put("calves",profile.getCalves());
-        sqLiteDatabase.update(TABLE_PROFILE, cv, "id="+profile.getId(), null);
-        System.out.println("Profile updated");
+        cv.put(COL_HEIGHT,profile.getHeight());
+        cv.put(COL_WEIGHT,profile.getWeight());
+        cv.put(COL_ARM,profile.getArm());
+        cv.put(COL_CHEST,profile.getChest());
+        cv.put(COL_HIPS,profile.getHips());
+        cv.put(COL_WAIST,profile.getWaist());
+        cv.put(COL_THIGHS,profile.getThighs());
+        cv.put(COL_CALVES,profile.getCalves());
+        sqLiteDatabase.update(TABLE_PROFILE, cv, COL_ID+"="+profile.getId(), null);
     }
 
     @Override
     public void deleteWorkout(int workoutID) {
-        sqLiteDatabase.delete(TABLE_WORKOUT,"id=?",new String[]{String.valueOf(workoutID),});
+        sqLiteDatabase.delete(TABLE_WORKOUT,COL_ID+"=?",new String[]{String.valueOf(workoutID),});
     }
 
     @Override
     public ArrayList<Workout> getWorkouts() {
         ArrayList<Workout> workouts = new ArrayList<Workout>();
         Cursor cursor = sqLiteDatabase.query(TABLE_WORKOUT,
-                new String[] {"id","name","days"},
+                new String[] {COL_ID,COL_NAME,COL_DAYS},
                 null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Log.v("Workout ID: ", cursor.getString(0));
                 workouts.add(new Workout(
                         cursor.getInt(0),
                         cursor.getString(1),
@@ -115,11 +125,10 @@ public class WorkoutDB implements IWorkoutDB{
     public Profile getProfile() {
         Profile profile = null;
         Cursor cursor = sqLiteDatabase.query(TABLE_PROFILE,
-                new String[] {"id","height","weight","arm","chest","hips","waist","thighs","calves"},
+                new String[] {COL_ID,COL_HEIGHT,COL_WEIGHT,COL_ARM,COL_CHEST,COL_HIPS,COL_WAIST,COL_THIGHS,COL_CALVES},
                 null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                Log.v("Profile ID: ", cursor.getString(0));
                 profile = new Profile((int) cursor.getLong(0));
                 profile.setHeight((int) cursor.getLong(1));
                 profile.setWeight((int) cursor.getLong(2));
@@ -163,25 +172,26 @@ public class WorkoutDB implements IWorkoutDB{
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE " + TABLE_WORKOUT
-                    + "(id INTEGER PRIMARY KEY, " +
-                    "name TEXT, " +
-                    "days BLOB)");
+                    + "("+COL_ID+ "INTEGER PRIMARY KEY, " +
+                    COL_NAME+" TEXT, " +
+                    COL_DAYS+" BLOB)");
             db.execSQL("CREATE TABLE " + TABLE_PROFILE
-                    + "(id INTEGER PRIMARY KEY, " +
-                    "height INTEGER, " +
-                    "weight INTEGER, " +
-                    "arm INTEGER, " +
-                    "chest INTEGER, " +
-                    "hips INTEGER, " +
-                    "waist INTEGER, "+
-                    "thighs INTEGER, "+
-                    "calves INTEGER)");
+                    + "("+COL_ID+ "INTEGER PRIMARY KEY, " +
+                    COL_HEIGHT+" INTEGER, " +
+                    COL_WEIGHT+" INTEGER, " +
+                    COL_ARM+" INTEGER, " +
+                    COL_CHEST+" INTEGER, " +
+                    COL_HIPS+" INTEGER, " +
+                    COL_WAIST+" INTEGER, "+
+                    COL_THIGHS+" INTEGER, "+
+                    COL_CALVES+" INTEGER)");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db,
                               int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_WORKOUT);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE);
             onCreate(db);
         }
     }

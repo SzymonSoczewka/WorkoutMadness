@@ -19,11 +19,10 @@ import team12.workoutmadness.BLL.BLLManager;
 import team12.workoutmadness.R;
 
 public class CreateAccountActivity extends AppCompatActivity {
-
-    FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
-    EditText email,name,password,password2;
-    Button btnCancel,btnCreate;
-    Toast tstSuccess,tstFail,tstEmpty,tstNoMatch;
+    private FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
+    private EditText emailInput, passwordInput, password2Input;
+    private Button btnCancel,btnCreate;
+    private Toast tstSuccess,tstFail,tstEmpty,tstNoMatch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,15 +34,15 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
 
-
+    //Getting access to .xml elements
     private void setViews() {
-        email = findViewById(R.id.editEmail);
-        password = findViewById(R.id.editPassword);
-        password2 = findViewById(R.id.editPassword2);
+        emailInput = findViewById(R.id.editEmail);
+        passwordInput = findViewById(R.id.editPassword);
+        password2Input = findViewById(R.id.editPassword2);
         btnCancel = findViewById(R.id.btnCancel);
         btnCreate = findViewById(R.id.btnCreate);
     }
-
+    //This method sets buttons behaviour
     private void setButtons() {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +57,18 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
     }
-
+    //This method will try to create new user
     private void tryCreate() {
-        if(email.getText().toString().isEmpty() ||
-                name.getText().toString().isEmpty() ||
-                password.getText().toString().isEmpty() ||
-                password2.getText().toString().isEmpty()){
+        if(fieldIsEmpty(emailInput) || fieldIsEmpty(passwordInput) || fieldIsEmpty(password2Input))
             tstEmpty.show();
-        } else {
-            if(password.getText().toString().equals(password2.getText().toString())){
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+         else {
+             String password = passwordInput.getText().toString();
+             String password2 = password2Input.getText().toString();
+
+            if(password.equals(password2)){
+                String email = emailInput.getText().toString();
+                mAuth.createUserWithEmailAndPassword(email, password).
+                        addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -78,12 +79,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                         }
                     }
                 });
-            } else {
+            } else
                 tstNoMatch.show();
-            }
         }
     }
-
+    //This method sets up toast for later display
     private void setUpToasts() {
         tstSuccess = Toast.makeText(this, "Account successfully created", Toast.LENGTH_SHORT);
         tstFail = Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT);
@@ -91,5 +91,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         tstNoMatch = Toast.makeText(this, "The password is not equal", Toast.LENGTH_SHORT);
     }
 
+    //Simple method to check if input filed is empty
+    private boolean fieldIsEmpty(EditText et){
+        return !et.getText().toString().isEmpty();
+    }
 
 }

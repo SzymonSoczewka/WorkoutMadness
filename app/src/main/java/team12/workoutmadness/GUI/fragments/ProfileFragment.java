@@ -53,7 +53,24 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
-
+    //Getting access to .xml elements
+    private void setViews(View view) {
+        heightPicker = view.findViewById(R.id.height_picker);
+        weightPicker = view.findViewById(R.id.weight_picker);
+        txtPBmi = view.findViewById(R.id.txtPBmi);
+        btnSignout = view.findViewById(R.id.btnSignout);
+        nameTag = view.findViewById(R.id.nameTag);
+        nameTag.setText(manager.getFirebaseUsername());
+        bmiDetails = view.findViewById(R.id.bmi_details);
+        btnSave = view.findViewById(R.id.btn_save_profile);
+        armInput = view.findViewById(R.id.arm_input);
+        chestInput = view.findViewById(R.id.chest_input);
+        hipsInput = view.findViewById(R.id.hips_input);
+        waistInput = view.findViewById(R.id.waist_input);
+        thighsInput = view.findViewById(R.id.thighs_input);
+        calvesInput = view.findViewById(R.id.calves_input);
+    }
+    //This method configures button behaviour
     private void setButtons() {
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +85,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
+    //This method defines signOut behaviour
     private void signOut() {
         final FirebaseAuth mAuth = manager.getFirebaseAuth();
         mAuth.signOut();
@@ -76,7 +93,7 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
         getActivity().finish();
     }
-
+    //This method will load input fields with user's data when his profile was saved to db
     private void loadProfile(){
         if(manager.getProfile() != null) {
             height = profile.getHeight();
@@ -93,6 +110,7 @@ public class ProfileFragment extends Fragment {
             height = 170;
         }
     }
+    //This method will save user input and either create or update his profile
     private void saveProfile() {
         if(profile != null) {
             setProfileAttributes(profile);
@@ -116,7 +134,7 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
-
+    //This method will save data from input fields into profile attributes
     private void setProfileAttributes(Profile profile) {
         profile.setHeight(heightPicker.getValue());
         profile.setWeight(weightPicker.getValue());
@@ -128,27 +146,12 @@ public class ProfileFragment extends Fragment {
         profile.setCalves(Integer.parseInt(textOrZero(calvesInput.getText().toString())));
     }
 
-    private void setViews(View view) {
-        heightPicker = view.findViewById(R.id.height_picker);
-        weightPicker = view.findViewById(R.id.weight_picker);
-        txtPBmi = view.findViewById(R.id.txtPBmi);
-        btnSignout = view.findViewById(R.id.btnSignout);
-        nameTag = view.findViewById(R.id.nameTag);
-        nameTag.setText(manager.getFirebaseUsername());
-        bmiDetails = view.findViewById(R.id.bmi_details);
-        btnSave = view.findViewById(R.id.btn_save_profile);
-        armInput = view.findViewById(R.id.arm_input);
-        chestInput = view.findViewById(R.id.chest_input);
-        hipsInput = view.findViewById(R.id.hips_input);
-        waistInput = view.findViewById(R.id.waist_input);
-        thighsInput = view.findViewById(R.id.thighs_input);
-        calvesInput = view.findViewById(R.id.calves_input);
-    }
 
+    //This method defines pickers min,max values, formats its value and sets listener for value change
     private void setPickers() {
         // Setting the height picker
         heightPicker.setMinValue(130);
-        heightPicker.setMaxValue(220);
+        heightPicker.setMaxValue(250);
         heightPicker.setValue(height);
         NumberPicker.Formatter heightFormat = new NumberPicker.Formatter() {
             @Override
@@ -166,8 +169,8 @@ public class ProfileFragment extends Fragment {
         });
 
         // Setting the weight picker
-        weightPicker.setMinValue(40);
-        weightPicker.setMaxValue(150);
+        weightPicker.setMinValue(30);
+        weightPicker.setMaxValue(250);
         weightPicker.setValue(weight);
         NumberPicker.Formatter weightFormat = new NumberPicker.Formatter() {
             @Override
@@ -193,42 +196,40 @@ public class ProfileFragment extends Fragment {
         setDescription(result);
     }
 
+    //Depending on bmi result, different description with different colors will be displayed
     @SuppressLint("SetTextI18n")
     private void setDescription(double result) {
-
+        String LETHAL = "#B40503";
+        String VERY_BAD = "#C51912";
+        String BAD = "#D24031";
+        String UNHEALTHY = "#D95440";
+        String HEALTHY = "#03B24A";
         if(result<16){
             bmiDetails.setText("STARVATION");
-            bmiDetails.setTextColor(Color.parseColor("#B40503"));
-        }
-         else if(result >= 16  && result <= 16.99) {
+            bmiDetails.setTextColor(Color.parseColor(LETHAL));
+        } else if(result >= 16  && result <= 16.99) {
             bmiDetails.setText("EMACIATION");
-            bmiDetails.setTextColor(Color.parseColor("#C51912"));
-        }
-         else if(result >= 17 && result <= 18.49) {
+            bmiDetails.setTextColor(Color.parseColor(VERY_BAD));
+        } else if(result >= 17 && result <= 18.49) {
             bmiDetails.setText("UNDERWEIGHT");
-            bmiDetails.setTextColor(Color.parseColor("#D24031"));
-        }
-         else if(result >= 18.5 && result <24.99){
+            bmiDetails.setTextColor(Color.parseColor(BAD));
+        } else if(result >= 18.5 && result <24.99){
             bmiDetails.setText("NORMAL WEIGHT");
-            bmiDetails.setTextColor(Color.parseColor("#03B24A"));
+            bmiDetails.setTextColor(Color.parseColor(HEALTHY));
         } else if(result >= 25 && result <=29.99) {
             bmiDetails.setText("OVERWEIGHT");
-            bmiDetails.setTextColor(Color.parseColor("#D95440"));
-        }
-         else if(result >= 30 && result <= 34.99) {
+            bmiDetails.setTextColor(Color.parseColor(UNHEALTHY));
+        } else if(result >= 30 && result <= 34.99) {
             bmiDetails.setText("CLASS 1 OBESITY");
-            bmiDetails.setTextColor(Color.parseColor("#D24031"));
-        }
-         else if(result >= 35 && result <= 39.99) {
+            bmiDetails.setTextColor(Color.parseColor(BAD));
+        } else if(result >= 35 && result <= 39.99) {
             bmiDetails.setText("CLASS 2 OBESITY");
-            bmiDetails.setTextColor(Color.parseColor("#C51912"));
-        }
-         else{
+            bmiDetails.setTextColor(Color.parseColor(VERY_BAD));
+        } else{
             bmiDetails.setText("CLASS 3 OBESITY");
-            bmiDetails.setTextColor(Color.parseColor("#B40503"));
+            bmiDetails.setTextColor(Color.parseColor(LETHAL));
          }
     }
-
     private String textOrZero(String string){
         if(!string.isEmpty())
             return string;

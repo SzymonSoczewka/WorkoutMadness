@@ -24,7 +24,7 @@ public class BodyPartsFragment extends Fragment {
         setButtons();
         return view;
     }
-
+    //Getting access to .xml elements
     private void setViews(View view) {
          btnAbs = view.findViewById(R.id.btn_abs);
          btnArms = view.findViewById(R.id.btn_arms);
@@ -36,7 +36,7 @@ public class BodyPartsFragment extends Fragment {
          btnChest = view.findViewById(R.id.btn_chest);
          btnExtra = view.findViewById(R.id.btn_extra);
     }
-
+    //Each button will open browser and go to the hardcoded url
     private void setButtons() {
     btnAbs.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -102,6 +102,7 @@ public class BodyPartsFragment extends Fragment {
             }
         });
     }
+    //This method creates intent that opens browser and goes to the provided url
     private void openBrowser(String url){
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));

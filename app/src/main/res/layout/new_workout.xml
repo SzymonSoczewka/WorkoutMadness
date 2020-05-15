@@ -34,7 +34,8 @@
             android:backgroundTint="@color/primaryColor"
             android:ems="10"
             android:hint="Name"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView9"

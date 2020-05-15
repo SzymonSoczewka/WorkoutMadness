@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -215,10 +216,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String newName = input.getText().toString();
-                workout.setName(newName);
-                manager.updateWorkout(workout);
-                setSpinner();
-                title.setSelection(lastSelection);
+                if(!newName.isEmpty()) {
+                    workout.setName(newName);
+                    manager.updateWorkout(workout);
+                    setSpinner();
+                    title.setSelection(lastSelection);
+                } else
+                    Toast.makeText(context,"Workout name cannot be empty",Toast.LENGTH_SHORT).show();
 
             }
         });

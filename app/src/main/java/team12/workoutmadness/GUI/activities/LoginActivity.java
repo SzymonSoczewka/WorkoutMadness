@@ -21,19 +21,14 @@ import team12.workoutmadness.BLL.BLLManager;
 import team12.workoutmadness.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LOGIN_ACTIVITY";
-
-
-
-    EditText emailInput, passwordInput;
-    Button btnLogin, btnSignup;
-    Toast tstSuccess, tstFail, tstEmpty;
-    FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
+    private EditText emailInput, passwordInput;
+    private Button btnLogin, btnSignup;
+    private Toast tstSuccess, tstFail, tstEmpty;
+    private FirebaseAuth mAuth = BLLManager.getInstance(null).getFirebaseAuth();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         setViews();
         CreateToasts();
         setButtons();
@@ -74,12 +69,11 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(TAG, "Sign in success");
+                if (task.isSuccessful())
                     SignIn();
-                } else {
+                 else
                     tstFail.show();
-                }
+
             }
         });
     }

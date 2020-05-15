@@ -2,12 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/c"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView53"
         android:layout_width="415dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
@@ -41,16 +39,11 @@
 
             <EditText
                 android:id="@+id/exercise_name_input"
-                android:layout_width="284dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Exercise name"
-                android:inputType="textPersonName" />
-
-            <Spinner
-                android:id="@+id/exercise_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:layout_weight="1" />
+                android:inputType="textPersonName"
+                android:textSize="24sp" />
 
         </LinearLayout>
 

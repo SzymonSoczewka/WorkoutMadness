@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import team12.workoutmadness.BE.Day;
 
-public class ObjectConverter {
-    public static byte[] toByte(ArrayList<Day> modeldata) {
+class ObjectConverter {
+    static byte[] toByte(ArrayList<Day> modeldata) {
         try {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -25,7 +25,7 @@ public class ObjectConverter {
 
         return null;
     }
-    public static ArrayList<Day> fromByte(byte[] data) {
+    static ArrayList<Day> fromByte(byte[] data) {
         try {
 
 
@@ -33,9 +33,7 @@ public class ObjectConverter {
             ObjectInputStream ois = new ObjectInputStream(baip);
             return (ArrayList<Day>) ois.readObject();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;

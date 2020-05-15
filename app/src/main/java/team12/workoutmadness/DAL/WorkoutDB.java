@@ -172,11 +172,11 @@ public class WorkoutDB implements IWorkoutDB{
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE " + TABLE_WORKOUT
-                    + "(id INTEGER PRIMARY KEY, " +
+                    + "("+COL_ID+" INTEGER PRIMARY KEY, " +
                     COL_NAME+" TEXT, " +
                     COL_DAYS+" BLOB)");
             db.execSQL("CREATE TABLE " + TABLE_PROFILE
-                    + "(id INTEGER PRIMARY KEY, " +
+                    + "("+COL_ID+" INTEGER PRIMARY KEY, " +
                     COL_HEIGHT+" INTEGER, " +
                     COL_WEIGHT+" INTEGER, " +
                     COL_ARM+" INTEGER, " +

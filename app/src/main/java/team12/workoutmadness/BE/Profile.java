@@ -5,12 +5,12 @@ public class Profile {
     private int id;
     private int height;
     private int weight;
-    private int arm=0;
-    private int chest=0;
-    private int hips=0;
-    private int waist=0;
-    private int thighs=0;
-    private int calves=0;
+    private int arm;
+    private int chest;
+    private int hips;
+    private int waist;
+    private int thighs;
+    private int calves;
 
     public Profile(int id) {
         this.id = id;

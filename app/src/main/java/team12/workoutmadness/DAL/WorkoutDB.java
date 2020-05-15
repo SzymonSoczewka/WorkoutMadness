@@ -121,8 +121,8 @@ public class WorkoutDB implements IWorkoutDB{
             do {
                 Log.v("Profile ID: ", cursor.getString(0));
                 profile = new Profile((int) cursor.getLong(0));
-                profile.setWeight((int) cursor.getLong(1));
-                profile.setHeight((int) cursor.getLong(2));
+                profile.setHeight((int) cursor.getLong(1));
+                profile.setWeight((int) cursor.getLong(2));
                 profile.setArm((int) cursor.getLong(3));
                 profile.setChest((int) cursor.getLong(4));
                 profile.setHips((int) cursor.getLong(5));

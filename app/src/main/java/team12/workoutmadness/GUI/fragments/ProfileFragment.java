@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,7 +31,7 @@ import team12.workoutmadness.R;
 public class ProfileFragment extends Fragment {
     private static final String TAG = "PROFILE_FRAGMENT";
     private NumberPicker heightPicker, weightPicker;
-    private int height,weight;
+    private int height,weight,bmi;
     private EditText armInput,chestInput,hipsInput,waistInput,thighsInput,calvesInput;
     private TextView txtPBmi,nameTag;
     private Button btnSave;
@@ -80,37 +81,45 @@ public class ProfileFragment extends Fragment {
         if(manager.getProfile() != null) {
             height = profile.getHeight();
             weight = profile.getWeight();
-            heightPicker.setValue(height);
-            weightPicker.setValue(weight);
             armInput.setText(String.valueOf(profile.getArm()));
             chestInput.setText(String.valueOf(profile.getChest()));
             hipsInput.setText(String.valueOf(profile.getHips()));
             waistInput.setText(String.valueOf(profile.getWaist()));
             thighsInput.setText(String.valueOf(profile.getThighs()));
             calvesInput.setText(String.valueOf(profile.getCalves()));
-            calculateBMI();
         } else {
+            //Default values
             weight = 70;
             height = 170;
-            calculateBMI();
         }
     }
     private void saveProfile() {
         if(profile != null) {
             setProfileAttributes(profile);
-            manager.updateProfile(profile);
-        }
+            try {
+                manager.updateProfile(profile);
+                Toast.makeText(getContext(),"Profile was saved.",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception e) {
+                Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+            }
         else {
             profile = new Profile(1);
             setProfileAttributes(profile);
-            manager.addProfile(profile);
+            try {
+                manager.addProfile(profile);
+                Toast.makeText(getContext(),"Profile was created.",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception e) {
+                Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     private void setProfileAttributes(Profile profile) {
         profile.setHeight(heightPicker.getValue());
         profile.setWeight(weightPicker.getValue());
-        System.out.println("pickers: "+heightPicker.getValue()+" "+weightPicker.getValue());
         profile.setArm(Integer.parseInt(textOrZero(armInput.getText().toString())));
         profile.setChest(Integer.parseInt(textOrZero(chestInput.getText().toString())));
         profile.setHips(Integer.parseInt(textOrZero(hipsInput.getText().toString())));
@@ -151,7 +160,6 @@ public class ProfileFragment extends Fragment {
         heightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.i("Number", newVal + "");
                 height = newVal;
                 calculateBMI();
             }
@@ -171,7 +179,6 @@ public class ProfileFragment extends Fragment {
         weightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.i("Number", newVal + "");
                 weight = newVal;
                 calculateBMI();
             }

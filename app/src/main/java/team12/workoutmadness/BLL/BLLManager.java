@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
+import team12.workoutmadness.BE.Profile;
 import team12.workoutmadness.BE.Workout;
 import team12.workoutmadness.DAL.FirebaseDB;
 import team12.workoutmadness.DAL.IWorkoutDB;
@@ -33,11 +34,14 @@ public class BLLManager
     public void addWorkout(Workout workout) {
         workoutDB.addWorkout(workout);
     }
+    public void addProfile(Profile profile) {workoutDB.addProfile(profile);}
     public void updateWorkout(Workout workout){workoutDB.updateWorkout(workout);}
+    public void updateProfile(Profile profile){workoutDB.updateProfile(profile);}
     public ArrayList<Workout> getWorkouts(){
         return workoutDB.getWorkouts();
     }
-    public int getNextID(){return workoutDB.getNextID();}
+    public Profile getProfile() { return workoutDB.getProfile(); }
+    public int getNextID(){return workoutDB.getNextWorkoutID();}
     public void deleteWorkout(int workoutID){workoutDB.deleteWorkout(workoutID);}
     public FirebaseAuth getFirebaseAuth(){
         return firebase.getFirebaseAuth();

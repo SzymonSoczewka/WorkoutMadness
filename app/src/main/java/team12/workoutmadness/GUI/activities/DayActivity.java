@@ -77,12 +77,18 @@ public class DayActivity extends AppCompatActivity {
                 Exercise newExercise =  (Exercise) data.getExtras().getSerializable("newExercise");
                 selectedDay.addExercise(newExercise);
                 setAdapter();
-            }
+            } else
+                System.out.println("Create intent cancelled.");
+
         } else if (requestCode == DAY_FRAGMENT_UPDATE) {
-                Exercise exerciseUpdated =  (Exercise) data.getExtras().getSerializable("exerciseUpdated");
+            if (resultCode == Activity.RESULT_OK) {
+                Exercise exerciseUpdated = (Exercise) data.getExtras().getSerializable("exerciseUpdated");
                 selectedDay.getExercises().get(lastSelection).setSets(exerciseUpdated.getSets());
                 selectedDay.getExercises().get(lastSelection).setName(exerciseUpdated.getName());
                 setAdapter();
+            } else
+                System.out.println("Update intent cancelled.");
+
         }
     }
     //This method overrides behaviour when back button is pressed

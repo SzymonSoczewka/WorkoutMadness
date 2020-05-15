@@ -13,28 +13,26 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Objects;
-
-import team12.workoutmadness.BE.Day;
-import team12.workoutmadness.R;
 import team12.workoutmadness.BE.Exercise;
 import team12.workoutmadness.BE.Set;
+import team12.workoutmadness.R;
 
 public class ExerciseActivity extends AppCompatActivity {
-    private Button btnNewSet,btnSaveExercise;
-    private EditText nameInput;
-    private LinearLayout setsContainer;
     private ArrayList<LinearLayout> setRowsList = new ArrayList<>();
+    private Button btnNewSet,btnSaveExercise;
+    private LinearLayout setsContainer;
     private Exercise exerciseToUpdate;
+    private EditText nameInput;
+    private Context context;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise);
+        context = getWindow().getContext();
         setViews();
         setButtons();
         exerciseToUpdate = (Exercise) getIntent().getSerializableExtra("exerciseToUpdate");
@@ -57,10 +55,16 @@ public class ExerciseActivity extends AppCompatActivity {
         btnSaveExercise = findViewById(R.id.save_exercise);
         setsContainer = findViewById(R.id.sets_container);
     }
+    //This method overrides behaviour when back button is pressed
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        setResult(Activity.RESULT_CANCELED,intent);
+        finish();
+    }
     //This method sets functionality for buttons
     private void setButtons() {
         //When this button is clicked, new row appears (max 10 rows)
-        final Context context = getWindow().getContext();
         btnNewSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +86,7 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         });
     }
+
     //This method is creating all elements for a row in which user provides his input
     private void createNewSet(boolean updateMode, int setIndex) {
         final Context context = getWindow().getContext();

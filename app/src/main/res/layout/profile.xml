@@ -14,12 +14,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/btnSignout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:text="Sign out" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginStart="157dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="158dp"
             android:src="@drawable/default_profile"
             app:civ_circle_background_color="#e81e63" />
@@ -45,8 +52,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -96,34 +103,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Age: "
-                    android:textColor="@color/primaryColor"
-                    android:textSize="20sp" />
-
-                <NumberPicker
-                    android:id="@+id/age_picker"
-                    android:layout_width="55dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="70dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
@@ -134,7 +119,7 @@
 
                 <TextView
                     android:id="@+id/txtPBmi"
-                    android:layout_width="55dp"
+                    android:layout_width="56dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -145,23 +130,171 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bmi_details"
+                    android:layout_width="87dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TextView"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnPSave"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/primaryColor"
-                android:text="Save" />
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/primaryColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Arm(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/arm_input"
+                    android:layout_width="59dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Chest(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/chest_input"
+                    android:layout_width="54dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Hips(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/hips_input"
+                    android:layout_width="59dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Waist(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/waist_input"
+                    android:layout_width="54dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="104dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Thighs(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/thighs_input"
+                    android:layout_width="59dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    android:layout_width="97dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Calves(cm)"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/calves_input"
+                    android:layout_width="54dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="3" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnSignout"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_save_profile"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Sign out"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:backgroundTint="@color/primaryColor"
+            android:text="Save" />
 
     </LinearLayout>
 
